@@ -1,25 +1,15 @@
 const container = document.getElementById('script-container');
 if (!container) return;
 
-// Dynamic data from schema
-const userData = {
-    firstName: "Odie",
-    dob: "1976-03-15",
-    currentWeight: "266",   // Weight as string
-    gender: "Male",
-    goal: "Reach 180 lbs",
-    targetWeight: "180",    // Weight as string
-    height: "5'11",
-    bmi: "37.10"
-};
+const userData = JSON.parse(localStorage.getItem('userInfo')) || {};
 
 // Constants for weight loss range
 const minWeightLossPerWeek = 3.74;
 const maxWeightLossPerWeek = 4.98;
 
 // Parsing weights to numbers for calculations
-const currentWeight = parseFloat(userData.currentWeight);
-const targetWeight = parseFloat(userData.targetWeight);
+const currentWeight = parseFloat(userData.currentWeight) || 0;
+const targetWeight = parseFloat(userData.targetWeight) || 0;
 
 // Calculations
 const totalWeightToLose = currentWeight - targetWeight;
@@ -30,7 +20,7 @@ container.innerHTML = `
     <div style="padding: 2rem; max-width: 800px; margin: 0 auto; font-family: 'Arial', sans-serif; color: #2C3E50; line-height: 1.8; text-align: center;">
         <!-- Title -->
         <h1 style="font-size: 2rem; font-weight: bold; margin-bottom: 1.5rem;">
-            With medication, ${userData.firstName}, you'll lose ${minWeightLossPerWeek} to ${maxWeightLossPerWeek} pounds <span style="color: #68B04A;">per week</span>
+            With medication, you'll lose ${minWeightLossPerWeek} to ${maxWeightLossPerWeek} pounds <span style="color: #68B04A;">per week</span>
         </h1>
         <!-- Separator -->
         <hr style="border: none; border-top: 1px solid #D3D3D3; margin: 1.5rem 0;">

@@ -1,24 +1,18 @@
 const container = document.getElementById('script-container');
 if (!container) return;
 
-// Dynamic data from schema
-const userData = {
-    firstName: "Odie",
-    dob: "1976-03-15",
-    currentWeight: 266,    // Example: current weight
-    gender: "Male",
-    goal: "Reach 100 lbs", // Example goal
-    targetWeight: 100,     // Example: target weight
-    height: "5'11",
-    bmi: "37.10"
-};
+const userData = JSON.parse(localStorage.getItem('userInfo')) || {};
 
 // Constants for weight loss range
 const minWeightLossPerWeek = 3.74;
 const maxWeightLossPerWeek = 4.98;
 
+// Parsing weights to numbers for calculations
+const currentWeight = parseFloat(userData.currentWeight) || 0;
+const targetWeight = parseFloat(userData.targetWeight) || 0;
+
 // Calculations
-const totalWeightToLose = userData.currentWeight - userData.targetWeight;
+const totalWeightToLose = currentWeight - targetWeight;
 const weeksToReachGoal = (totalWeightToLose / maxWeightLossPerWeek).toFixed(2);
 
 // Insert content dynamically

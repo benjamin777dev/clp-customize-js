@@ -22,3 +22,7 @@ if (buttons[1]) {
 } else {
     console.error("Button at index 1 does not exist.");
 }
+
+container.innerHTML = `
+  <h1>Calculations BMI</h1>
+`
