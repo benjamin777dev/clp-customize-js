@@ -1,20 +1,16 @@
 const container = document.getElementById('script-container');
 if (!container) return;
 
-
+// Inject HTML structure into the container
 container.innerHTML = `
     <!-- Main Content -->
     <div style="text-align: center; padding: 2rem; font-family: 'Montserrat', sans-serif; color: #1A1F71; max-width: 90%; margin: 0 auto;">
         <!-- Headline -->
         <h1 id="animated-headline" style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.3;">
-            <span style="opacity: 0; display: inline-block;">Not a problem, we can move faster.</span> 
-            <br>
-            <br>
-            <span style="opacity: 0; display: inline-block;">It will take some work, but with GLP-1 medication, your goal to lose 
-            <span style="color:#FFB400!important">95lbs</span> 
-            can be achieved in about 
-            <span style="color:#FFB400!important">22.08 weeks</span> - and it </span> 
-            <span style="opacity: 0; display: inline-block; color: #FFB400!important;"> doesn’t involve restrictive diets</span>
+            <span style="opacity: 0; display: inline-block;">We're going to</span> 
+            <span style="opacity: 0; display: inline-block; color: #FFB400;">fix</span>
+            <span style="opacity: 0; display: inline-block;">your broken</span> 
+            <span style="opacity: 0; display: inline-block;">metabolism today.</span>
         </h1>
 
         <!-- Top Line -->
@@ -22,14 +18,15 @@ container.innerHTML = `
 
         <!-- Subtext -->
         <p style="font-size: 1rem; font-weight: 400; margin: 0.5rem 0 0; color: #1A1F71;">
-            Now, let’s 
-            <strong style="color: #FFB400;"> analyze your metabolism </strong>  
-            and discover how well your body processes macronutrients.
+            Qualify for a prescription in <strong style="color: #FFB400;">2 Minutes</strong> by answering a few simple questions.
         </p>
 
+        <!-- Bottom Line -->
+        <hr style="width: 80%; border: none; height: 1px; background-color: #D3D3D3; margin: 1rem auto;">
     </div>
 `;
 
+// Add CSS animation dynamically
 const style = document.createElement('style');
 style.innerHTML = `
     @keyframes fadeInScale {
@@ -52,8 +49,9 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
+// Animate each word in sequence with effects
 const headlineSpans = document.querySelectorAll('#animated-headline span');
 headlineSpans.forEach((span, index) => {
     span.style.animation = `fadeInScale 1s ease-out forwards`;
-    span.style.animationDelay = `${index * 0.3}s`;
+    span.style.animationDelay = `${index * 0.3}s`; // Staggered delay for each word
 });
