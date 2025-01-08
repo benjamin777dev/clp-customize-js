@@ -220,5 +220,195 @@ style.innerHTML = `
         color: #FFB400;
         font-weight: bold;
     }
+
+    .pulsating-dot {
+        display: block;
+        width: 12px; /* Size of the dot */
+        height: 12px;
+        float:left;
+        top: 2px;
+        margin-right: 5px;
+        background-color: #00c389; /* Green color */
+        border-radius: 50%;
+        position: relative; /* Necessary for positioning the pseudo-element */
+
+    }
+
+    .pulsating-dot::Before {
+        content: ''; /* Required for pseudo-elements to render */
+        position: absolute; /* Position relative to .pulsating-dot */
+        top: 0;
+        left: 0;
+        width: 12px; /* Same size as the dot */
+        height: 12px;
+        background-color: #00c389; /* Green color */
+        border-radius: 50%;
+        animation: pulsate 1s infinite ease-in-out;
+        opacity: 0.6; /* Optional: Slight transparency for better effect */
+    }
+
+    @keyframes pulsate {
+        0% {
+            transform: scale(1);
+            opacity: 0.9;
+        }
+        50% {
+            transform: scale(2);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
+    .active-radio {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: left;
+        border-right:1px solid #E1E5EC;
+    }
+
+    .active-radio > span{
+        display: inline-block; 
+        border-radius: 50%; 
+        width: 20px; 
+        height: 20px; 
+        border: 2px solid #1A1F71
+    }
+
+    .active-radio > .active{
+        background-color: #FFB400;
+        border-color: #fff;
+    }
+
+
+
 `;
 document.head.appendChild(style);
+
+
+setTimeout(() => {
+    const parentElement = document.querySelector('.flex.flex-wrap.justify-center.gap-2');
+
+    if (parentElement) {
+        const imgElements = parentElement.querySelectorAll('img');
+        imgElements.forEach((img) => {
+            const parentDivOfImg = img.parentNode;
+            parentDivOfImg.style.height = '150px';
+            parentDivOfImg.style.width = '150px';
+            img.style.transform = 'scale(1.7)';
+        });
+
+        const btnElements = parentElement.querySelectorAll('button');
+        btnElements.forEach((btn) => {
+            let activeColor = '#FFB400';
+            if (btn.className.includes('bg-[--selected-background-color]')) {
+                activeColor = '#1A1F71';
+            }
+
+            btn.style.cssText = `
+                border-radius: 7px;
+                position: relative;
+                padding-left: 40px;
+                overflow: hidden;
+                box-shadow: none;
+                border: 2px solid #E1E5EC;
+            `;
+
+            const section = btn.querySelector('section');
+            if (section) section.style.gap = '0';
+
+            if (!btn.querySelector('.active-radio')) {
+                const radioElements = document.createElement('div');
+                radioElements.className = 'active-radio';
+                radioElements.innerHTML = `<span></span>`;
+                btn.appendChild(radioElements);
+            }
+
+            const titleElements = btn.querySelectorAll('h1');
+            if (titleElements[0]) {
+                titleElements[0].style.cssText = `
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    font-family: "Lora", "Lora Fallback";
+                    line-height: 1.1;
+                    color: #1A1F71;                    
+                `;
+                titleElements[0].parentNode.style.flexWrap = 'wrap-reverse';
+            }
+
+            if (titleElements[1]) {
+                titleElements[1].style.cssText = `
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    margin-top: 7px;
+                    color: #1A1F71;
+                `;
+            }
+
+            const spanElements = btn.querySelectorAll('span');
+            if (spanElements[0]) {
+                spanElements[0].style.cssText = `
+                    color: white;
+                    font-weight: 700;
+                    font-size: 12px;
+                    background-color: ${activeColor};
+                    padding: 15px 25px;
+                    border-radius: 5px;
+                    border-color: transparent;
+                `;
+            }
+
+            const pElement = btn.querySelector('p');
+            if (pElement) {
+                pElement.style.cssText = `
+                        display: flex; 
+                        flex-wrap: wrap;
+                        color: #1A1F71;
+                    `;
+
+                if (!pElement.querySelector('.pulsating-dot')) {
+                    const InStock = document.createElement('span');
+                    InStock.style.cssText = 'float: right; margin-left: auto;';
+                    InStock.textContent = 'In Stock';
+
+                    const pulsateSpan = document.createElement('span');
+                    pulsateSpan.className = 'pulsating-dot';
+                    InStock.appendChild(pulsateSpan);
+                    pElement.appendChild(InStock);
+                }
+            }
+        });
+
+        btnElements.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                btnElements.forEach((otherBtn) => {
+                    const spanElement = otherBtn.querySelector('.active-radio span');
+                    if (spanElement) {
+                        otherBtn.style.borderColor = '#E1E5EC';
+                        spanElement.parentNode.style.backgroundColor = 'transparent';
+                        spanElement.classList.remove('active');
+                    }
+                });
+
+                const clickedSpan = btn.querySelector('.active-radio span');
+                if (clickedSpan) {
+                    btn.style.borderColor = '#1A1F71';
+                    clickedSpan.parentNode.style.backgroundColor = '#1A1F71';
+                    clickedSpan.classList.add('active');
+                }
+            });
+        });
+
+        btnElements[0]?.click();
+    } else {
+        console.error('Parent element not found');
+    }
+}, 3000);
