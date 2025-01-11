@@ -3,7 +3,6 @@ if (!container) return;
 
 container.parentNode.parentNode.style.overflowX = 'hidden';
 
-
 // Fetch user data from localStorage
 const userData = JSON.parse(localStorage.getItem('userInfo')) || {};
 const firstName = userData.firstName || 'Congrats!';
@@ -12,9 +11,9 @@ const targetWeight = parseFloat(userData.targetWeight) || 195;
 const weightToLose = currentWeight - targetWeight;
 
 // Calculate intermediate points for a smooth curve
-const intermediate1 = currentWeight - (weightToLose * 0.35);
-const intermediate2 = currentWeight - (weightToLose * 0.65);
-const intermediate3 = currentWeight - (weightToLose * 0.85);
+const intermediate1 = currentWeight - weightToLose * 0.35;
+const intermediate2 = currentWeight - weightToLose * 0.65;
+const intermediate3 = currentWeight - weightToLose * 0.85;
 
 const currentDate = new Date();
 const futureDate = new Date();
@@ -31,60 +30,163 @@ document.head.appendChild(fontLink);
 const chartScript = document.createElement('script');
 chartScript.src = 'https://cdn.jsdelivr.net/npm/chart.js';
 chartScript.onload = () => {
+  // Add DataLabels plugin dynamically
+  const datalabelsScript = document.createElement('script');
+  datalabelsScript.src = 'https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels';
+  datalabelsScript.onload = () => {
     // Inject HTML structure
     container.innerHTML = `
-        <div style="padding: 2rem; max-width: 900px; margin: 0 auto; font-family: 'Figtree', sans-serif; color: #1A1F71;">
-            <!-- Chart Section -->
-            <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.4; text-align: center; color: #1A1F71;">
-                <span style="display: inline-block; background: linear-gradient(90deg, #FFB400, #FF4500); background-clip: text; -webkit-background-clip: text; color: transparent;">${firstName}</span>, 
-                We can help you lose up to 
-                <span id="animatedWeight" style="display: inline-block; background: linear-gradient(90deg, #FF4500, #FFB400); background-clip: text; -webkit-background-clip: text; color: transparent;">0</span> pounds 
-                by ${formattedDate}!
-            </h1>
-            <div style="position: relative; height: 300px; width: 100%; margin-bottom: 2rem;">
-                <canvas id="weightChart"></canvas>
-            </div>
-        </div>
+      <div style="padding: 2rem; max-width: 900px; margin: 0 auto; font-family: 'Figtree', sans-serif; color: #1A1F71;">
+          <!-- Chart Section -->
+          <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.4; text-align: center; color: #1A1F71;">
+              <span style="display: inline-block; background: linear-gradient(90deg, #FFB400, #FF4500); background-clip: text; -webkit-background-clip: text; color: transparent;">${firstName}</span>
+              We can help you lose up to 
+              <span id="animatedWeight" style="display: inline-block; background: linear-gradient(90deg, #FF4500, #FFB400); background-clip: text; -webkit-background-clip: text; color: transparent;">0</span> pounds 
+              by ${formattedDate}!
+          </h1>
+          <div style="position: relative; height: 300px; width: 100%; margin-bottom: 2rem; border: 1px solid #E6E8F0; border-radius: 10px;">
+              <canvas id="weightChart"></canvas>
+          </div>
+      </div>
     `;
+
+    // Chart data with dynamic styles
+    const weightData = [
+      { value: currentWeight, caption: '', color: '#FF5733', display:false, borderColor:'#FF5733'},
+      { value: intermediate1, caption: 'Phase 1: Steady Loss', color: 'rgb(221, 65, 18)', fontSize: 16,borderColor:'#FFC300'},
+      { value: intermediate2, caption: 'Phase 2: Major Progress', color: 'rgb(131, 121, 31)', fontSize: 17, borderColor:'rgb(176, 247, 166)'},
+      { value: intermediate3, caption: 'Phase 3: Near Target', color: '#68B04A', fontSize: 18, borderColor:'#68B04A'},
+      { value: targetWeight, caption: 'Goal Achieved!', color: 'white', fontSize: 20, bgColor: 'rgb(27, 153, 38)', borderColor:'rgb(27, 153, 38)'},
+    ];
+
+    // Extract values for the chart
+    const chartValues = weightData.map(data => data.value);
 
     // Generate the chart
     const ctx = document.getElementById('weightChart').getContext('2d');
-    const weightData = [currentWeight, intermediate1, intermediate2, intermediate3, targetWeight];
+
+    // Create gradient for the border color
+    const gradient = ctx.createLinearGradient(0, 0, ctx.canvas.width, 0);
+    gradient.addColorStop(0, 'rgb(255, 61, 17)'); // Start color (red)
+    gradient.addColorStop(0.5, 'rgba(255,87,51,1)'); // Start color (red)
+    gradient.addColorStop(0.8, 'rgba(255,195,0,1)'); // Middle color (yellow)
+    gradient.addColorStop(1, 'rgba(80, 186, 88, 1)'); // End color (blue)
+
+
     new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['', '', '', '', ''],
-            datasets: [
-                {
-                    label: 'Weight',
-                    data: weightData,
-                    borderColor: 'rgba(26, 31, 113, 0.9)',
-                    backgroundColor: 'rgba(26, 31, 113, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    pointBackgroundColor: ['red', 'orange', 'gold', '#68B04A', '#3BA935'],
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 3,
-                    pointRadius: [8, 8, 8, 8, 10],
-                },
-            ],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
+      type: 'line',
+      data: {
+        labels: ['1ST MONTH', '2ND MONTH', '3RD MONTH', '4TH MONTH', '5TH MONTH'],
+        datasets: [
+          {
+            label: 'Weight',
+            data: chartValues,
+            borderColor: gradient,
+            backgroundColor: 'rgba(26, 31, 113, 0.1)',
+            borderWidth: 4,
+            tension: 0.4,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: context => {
+                const index = context.dataIndex;
+                return weightData[index].borderColor??'#fff';
             },
-            scales: {
-                x: { ticks: { display: false }, grid: { display: false } },
-                y: { 
-                    ticks: { display: false }, 
-                    grid: { drawTicks: false, drawBorder: false, borderDash: [5, 5], color: '#E6E8F0' },
-                    min: targetWeight - 10,
-                    max: currentWeight + 5,
-                },
+            pointBorderWidth: 4,
+            pointRadius: weightData.map((_, index) => (index === weightData.length - 1 ? 12 : 8)),
+          },
+        ],
+      },
+      options: {
+        layout: {
+            padding: {
+              top: 20,    // Padding from the top of the chart
+              left: 20,   // Padding from the left of the chart
+              right: 50,  // Padding from the right of the chart
+              bottom: 20, // Padding from the bottom of the chart
             },
         },
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            title: {
+                display: true, // Enable title
+                text: 'Your Weight (LBS)', // Title text
+                font: {
+                  size: 15, // Font size
+                  weight: 'bold', // Font weight
+                  family: 'Arial', // Font family
+                },
+                color: '#1A1F71', // Title color
+                padding: {
+                  top: 10, // Padding above the title
+                  bottom: 20, // Padding below the title
+                },
+                align: 'center', // Title alignment: 'start', 'center', or 'end'
+              },
+          legend: { display: false },
+          datalabels: {
+            align: 'top',
+            anchor: 'end',
+            offset: context => {
+                const index = context.dataIndex;
+                return index === weightData.length - 1 ? 20 : 0; // Add offset only for the last node
+            },
+            display: context => {
+                const index = context.dataIndex;
+                return weightData[index].display;
+            },
+            backgroundColor: context => {
+              const index = context.dataIndex;
+              return weightData[index].bgColor;
+            },
+            borderColor: context => {
+                const index = context.dataIndex;
+                return weightData[index].borderColor;
+            },
+            borderRadius: 999,
+            color: context => {
+              const index = context.dataIndex;
+              return weightData[index].color;
+            },
+            font: context => {
+              const index = context.dataIndex;
+              return {
+                size: weightData[index].fontSize,
+                weight: 'bold',
+              };
+            },
+            padding: {
+                top: 20,
+                bottom: 18,
+                left:15,
+                right: 15,
+            },
+            formatter: (value, context) => {
+              const index = context.dataIndex;
+              const nodeValue = weightData[index].value;
+              return `${nodeValue}`; // Show value with caption
+            },
+          },
+        },
+        scales: {
+          x: { ticks: { 
+            display: true,
+            color: 'rgba(26, 31, 113, 0.9)',
+            font: {
+                size: 11,
+                weight: 'bold',
+                family: 'Arial',
+            },
+        
+        }, grid: { display: false }, },
+          y: {
+            ticks: { display: false },
+            grid: { drawTicks: false, drawBorder: false, borderDash: [5, 5], color: '#E6E8F0' },
+            min: targetWeight - 15,
+            max: currentWeight + 15,
+          },
+        },
+      },
+      plugins: [ChartDataLabels],
     });
 
     // Animate the weight-to-lose counter
@@ -94,135 +196,17 @@ chartScript.onload = () => {
     const step = weightToLose / 100;
 
     function animateWeight() {
-        if (currentWeightValue < weightToLose) {
-            currentWeightValue = Math.min(currentWeightValue + step, weightToLose);
-            animatedWeight.textContent = Math.floor(currentWeightValue);
-            requestAnimationFrame(animateWeight);
-        }
+      if (currentWeightValue < weightToLose) {
+        currentWeightValue = Math.min(currentWeightValue + step, weightToLose);
+        animatedWeight.textContent = Math.floor(currentWeightValue);
+        requestAnimationFrame(animateWeight);
+      }
     }
 
     animateWeight();
+  };
+
+  document.head.appendChild(datalabelsScript);
 };
+
 document.head.appendChild(chartScript);
-
-// Add CSS for enhancements
-const style = document.createElement('style');
-style.innerHTML = `
-    /* Flashing Bullet Points */
-    @keyframes gradientFlash {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-    .flashable {
-        display: inline-block;
-        background: linear-gradient(90deg, #FFB400, #FF4500, #FFB400);
-        background-size: 200%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradientFlash 1s linear infinite;
-    }
-
-    /* Testimonial Card Styles */
-    .testimonial-card {
-        background: linear-gradient(135deg, #ffffff, #f8f9fc);
-        border: 1px solid #1A1F71;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .testimonial-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-    .testimonial-card h2 {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #1A1F71;
-        margin-bottom: 1rem;
-    }
-    .testimonial-card p {
-        font-size: 0.9rem;
-        color: #2C3E50;
-        margin-bottom: 1rem;
-    }
-    .testimonial-card .user-info {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: #1A1F71;
-    }
-    .testimonial-card .verified {
-        color: #FFB400;
-        font-weight: bold;
-    }
-
-    .pulsating-dot {
-        display: block;
-        width: 12px; /* Size of the dot */
-        height: 12px;
-        float:left;
-        top: 2px;
-        margin-right: 5px;
-        background-color: #00c389; /* Green color */
-        border-radius: 50%;
-        position: relative; /* Necessary for positioning the pseudo-element */
-
-    }
-
-    .pulsating-dot::Before {
-        content: ''; /* Required for pseudo-elements to render */
-        position: absolute; /* Position relative to .pulsating-dot */
-        top: 0;
-        left: 0;
-        width: 12px; /* Same size as the dot */
-        height: 12px;
-        background-color: #00c389; /* Green color */
-        border-radius: 50%;
-        animation: pulsate 1s infinite ease-in-out;
-        opacity: 0.6; /* Optional: Slight transparency for better effect */
-    }
-
-    @keyframes pulsate {
-        0% {
-            transform: scale(1);
-            opacity: 0.9;
-        }
-        50% {
-            transform: scale(2);
-            opacity: 0;
-        }
-        100% {
-            transform: scale(2);
-            opacity: 0;
-        }
-    }
-
-    .active-radio {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        padding: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        float: left;
-        border-right:1px solid #E1E5EC;
-    }
-
-    .active-radio > span{
-        display: inline-block; 
-        border-radius: 50%; 
-        width: 20px; 
-        height: 20px; 
-        border: 2px solid #1A1F71
-    }
-
-    .active-radio > .active{
-        background-color: #FFB400;
-        border-color: #fff;
-    }
-`;
-
-document.head.appendChild(style);

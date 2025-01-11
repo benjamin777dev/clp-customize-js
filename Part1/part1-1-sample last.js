@@ -1,5 +1,5 @@
 const container = document.getElementById('script-container');
-if (!container) return;
+// if (!container) return;
 
 container.parentNode.parentNode.style.overflowX = 'hidden';
 
@@ -42,12 +42,12 @@ chartScript.onload = () => {
             <div style="padding: 2rem; max-width: 900px; margin: 0 auto; font-family: 'Figtree', sans-serif; color: #1A1F71;">
                 <!-- Chart Section -->
                 <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.4; text-align: center; color: #1A1F71;">
-                    <span style="display: inline-block; background: linear-gradient(90deg, #FFB400, #FF4500); background-clip: text; -webkit-background-clip: text; color: transparent;">${firstName}</span>, 
+                    <span style="display: inline-block; background: linear-gradient(90deg, #FFB400, #FF4500); background-clip: text; -webkit-background-clip: text; color: transparent;">${firstName}</span>
                     We can help you lose up to 
                     <span id="animatedWeight" style="display: inline-block; background: linear-gradient(90deg, #FF4500, #FFB400); background-clip: text; -webkit-background-clip: text; color: transparent;">0</span> pounds 
                     by ${formattedDate}!
                 </h1>
-                <div style="position: relative; height: 300px; width: 100%; margin-bottom: 2rem;">
+                <div style="position: relative; height: 300px; width: 100%; margin-bottom: 2rem;border: 1px solid #E6E8F0; border-radius:5px;background-color:white; padding-left:10px">
                     <canvas id="weightChart"></canvas>
                 </div>
 
@@ -62,20 +62,63 @@ chartScript.onload = () => {
 
                     .landing-cta-button {
                         width: 100%;
-                        padding: 20px;
-                        background-color: #0a1172;
-                        color: white;
-                        border: none;
-                        border-radius: 8px;
-                        font-size: 18px;
-                        font-weight: bold;
-                        cursor: pointer;
-                        display: flex;
+                        display: inline-flex;
                         align-items: center;
                         justify-content: center;
-                        gap: 10px;
-                        margin-bottom: 30px;
-                        transition: background-color 0.3s;
+                        background-color: rgb(6, 32, 136);
+                        color: rgb(255, 255, 255);
+                        border: 2px solid rgb(6, 32, 136);
+                        border-radius: 6px;
+                        box-sizing: border-box;
+                        cursor: pointer;
+                        font-family: Figtree, "Figtree Fallback";
+                        font-size: 14px;
+                        font-weight: 600;
+                        height: 56px;
+                        line-height: 20px;
+                        margin-bottom: 2rem;
+                        overflow: hidden;
+                        padding: 20px 40px;
+                        position: relative;
+                        text-align: center;
+                        text-decoration: none;
+                        transition: 
+                            color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                            background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                            border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                            text-decoration-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                            fill 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                            stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+                        -webkit-font-smoothing: antialiased;
+                        -webkit-tap-highlight-color: transparent;
+                        }
+
+                    .landing-cta-button:before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0) 30%, rgb(69, 151, 245) 50%, rgba(255, 255, 255, 0) 70%);
+                        background-size: 200% 200%;
+                        opacity: 0.5;
+                        transform: translateZ(0); /* Improves animation performance */
+                        animation: shine 3s infinite ease-out;
+                        box-sizing: border-box;
+                    }
+
+                    @keyframes shine {
+                        0% {
+                            content: '';
+                            background-position: 200% 0;
+                        }
+                        100% {
+                            content: '';
+                            background-position: -200% 0;
+                        }
                     }
 
                     .landing-cta-button:hover {
@@ -400,80 +443,140 @@ chartScript.onload = () => {
 
         // Chart data with dynamic styles
         const weightData = [
-            { value: currentWeight, caption: 'Start: Current Weight', color: '#FF5733', fontSize: 14, bgColor: 'rgba(255,87,51,0.7)' },
-            { value: intermediate1, caption: 'Phase 1: Steady Loss', color: '#FFC300', fontSize: 12, bgColor: 'rgba(255,195,0,0.7)' },
-            { value: intermediate2, caption: 'Phase 2: Major Progress', color: '#DAF7A6', fontSize: 14, bgColor: 'rgba(218,247,166,0.7)' },
-            { value: intermediate3, caption: 'Phase 3: Near Target', color: '#68B04A', fontSize: 16, bgColor: 'rgba(104,176,74,0.7)' },
-            { value: targetWeight, caption: 'Goal Achieved!', color: '#1A1F71', fontSize: 18, bgColor: 'rgba(26,31,113,0.7)' },
-        ];
-
+            { value: currentWeight, caption: '', color: '#FF5733', display:false, borderColor:'#FF5733'},
+            { value: intermediate1, caption: 'Phase 1: Steady Loss', color: 'rgb(221, 65, 18)', fontSize: 16,borderColor:'#FFC300'},
+            { value: intermediate2, caption: 'Phase 2: Major Progress', color: 'rgb(131, 121, 31)', fontSize: 17, borderColor:'rgb(176, 247, 166)'},
+            { value: intermediate3, caption: 'Phase 3: Near Target', color: '#68B04A', fontSize: 18, borderColor:'#68B04A'},
+            { value: targetWeight, caption: 'Goal Achieved!', color: 'white', fontSize: 20, bgColor: 'rgb(27, 153, 38)', borderColor:'rgb(27, 153, 38)'},
+          ];
+      
         // Extract values for the chart
         const chartValues = weightData.map(data => data.value);
 
         // Generate the chart
         const ctx = document.getElementById('weightChart').getContext('2d');
+
+        // Create gradient for the border color
+        const gradient = ctx.createLinearGradient(0, 0, ctx.canvas.width, 0);
+        gradient.addColorStop(0, 'rgb(255, 61, 17)'); // Start color (red)
+        gradient.addColorStop(0.5, 'rgba(255,87,51,1)'); // Start color (red)
+        gradient.addColorStop(0.8, 'rgba(255,195,0,1)'); // Middle color (yellow)
+        gradient.addColorStop(1, 'rgba(80, 186, 88, 1)'); // End color (blue)
+
         new Chart(ctx, {
             type: 'line',
             data: {
-            labels: ['', '', '', '', ''],
-            datasets: [
+              labels: ['1ST MONTH', '2ND MONTH', '3RD MONTH', '4TH MONTH', '5TH MONTH'],
+              datasets: [
                 {
-                label: 'Weight',
-                data: chartValues,
-                borderColor: 'rgba(26, 31, 113, 0.9)',
-                backgroundColor: 'rgba(26, 31, 113, 0.1)',
-                borderWidth: 3,
-                tension: 0.4,
-                pointBackgroundColor: weightData.map(data => data.color),
-                pointBorderColor: '#fff',
-                pointBorderWidth: 3,
-                pointRadius: weightData.map((_, index) => (index === weightData.length - 1 ? 12 : 8)),
+                  label: 'Weight',
+                  data: chartValues,
+                  borderColor: gradient,
+                  backgroundColor: 'rgba(26, 31, 113, 0.1)',
+                  borderWidth: 4,
+                  tension: 0.4,
+                  pointBackgroundColor: '#fff',
+                  pointBorderColor: context => {
+                      const index = context.dataIndex;
+                      return weightData[index].borderColor??'#fff';
+                  },
+                  pointBorderWidth: 4,
+                  pointRadius: weightData.map((_, index) => (index === weightData.length - 1 ? 12 : 8)),
                 },
-            ],
+              ],
             },
             options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
+              layout: {
+                  padding: {
+                    top: 20,    // Padding from the top of the chart
+                    left: 20,   // Padding from the left of the chart
+                    right: 50,  // Padding from the right of the chart
+                    bottom: 20, // Padding from the bottom of the chart
+                  },
+              },
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                  title: {
+                      display: true, // Enable title
+                      text: 'Your Weight (LBS)', // Title text
+                      font: {
+                        size: 13, // Font size
+                        family: 'Arial', // Font family
+                      },
+                      color: '#1A1F71', // Title color
+                      padding: {
+                        top: 10, // Padding above the title
+                        bottom: 20, // Padding below the title
+                      },
+                      align: 'center', // Title alignment: 'start', 'center', or 'end'
+                    },
                 legend: { display: false },
                 datalabels: {
-                align: 'top',
-                anchor: 'end',
-                backgroundColor: context => {
+                  align: 'top',
+                  anchor: 'end',
+                  offset: context => {
+                      const index = context.dataIndex;
+                      return index === weightData.length - 1 ? 20 : 0; // Add offset only for the last node
+                  },
+                  display: context => {
+                      const index = context.dataIndex;
+                      return weightData[index].display;
+                  },
+                  backgroundColor: context => {
                     const index = context.dataIndex;
                     return weightData[index].bgColor;
-                },
-                borderRadius: 10,
-                color: context => {
+                  },
+                  borderColor: context => {
+                      const index = context.dataIndex;
+                      return weightData[index].borderColor;
+                  },
+                  borderRadius: 999,
+                  color: context => {
                     const index = context.dataIndex;
                     return weightData[index].color;
-                },
-                font: context => {
+                  },
+                  font: context => {
                     const index = context.dataIndex;
                     return {
-                    size: weightData[index].fontSize,
-                    weight: 'bold',
+                      size: weightData[index].fontSize,
+                      weight: 'bold',
                     };
-                },
-                padding: 6,
-                formatter: (value, context) => {
+                  },
+                  padding: {
+                      top: 20,
+                      bottom: 18,
+                      left:15,
+                      right: 15,
+                  },
+                  formatter: (value, context) => {
                     const index = context.dataIndex;
-                    return weightData[index].caption;
+                    const nodeValue = weightData[index].value;
+                    return `${nodeValue}`; // Show value with caption
+                  },
                 },
-                },
-            },
-            scales: {
-                x: { ticks: { display: false }, grid: { display: false } },
+              },
+              scales: {
+                x: { ticks: { 
+                  display: true,
+                  color: 'rgba(26, 31, 113, 0.9)',
+                  font: {
+                      size: 11,
+                      weight: 'bold',
+                      family: 'Arial',
+                  },
+              
+              }, grid: { display: false }, },
                 y: {
-                ticks: { display: false },
-                grid: { drawTicks: false, drawBorder: false, borderDash: [5, 5], color: '#E6E8F0' },
-                min: targetWeight - 10,
-                max: currentWeight + 5,
+                  ticks: { display: false },
+                  grid: { drawTicks: false, drawBorder: false, borderDash: [5, 5], color: '#E6E8F0' },
+                  min: targetWeight - 15,
+                  max: currentWeight + 15,
                 },
-            },
+              },
             },
             plugins: [ChartDataLabels],
-        });
+          });
 
         // Animate the weight-to-lose counter
         const animatedWeight = document.getElementById('animatedWeight');
