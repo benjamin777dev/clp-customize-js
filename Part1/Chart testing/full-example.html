@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chart.js Line Chart with Labels</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+</head>
+<body>
+  <div style="width: 80%; margin: auto;">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+    // Get the canvas element
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    // Create the line chart
+    const myChart = new Chart(ctx, {
+      type: 'line', // Chart type
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels
+        datasets: [{
+          label: 'Monthly Sales', // Dataset label
+          data: [10, 20, 30, 40, 50], // Data points
+          borderColor: 'rgba(75, 192, 192, 1)', // Line color
+          borderWidth: 2, // Line width
+          fill: false, // Disable fill under the line
+          pointBackgroundColor: 'rgba(75, 192, 192, 1)', // Point color
+          pointRadius: 5, // Size of the points
+        }]
+      },
+      options: {
+        plugins: {
+          datalabels: {
+            align: 'top', // Position of the label
+            anchor: 'end', // Anchor point of the label
+            color: 'black', // Label color
+            font: {
+              size: 12, // Font size
+              weight: 'bold', // Font weight
+            },
+            formatter: (value) => value, // Display the value as the label
+          },
+        },
+        responsive: true, // Make the chart responsive
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Months', // Label for the X-axis
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Sales', // Label for the Y-axis
+            },
+            beginAtZero: true, // Start the Y-axis at 0
+          }
+        }
+      },
+      plugins: [ChartDataLabels], // Register the plugin
+    });
+  </script>
+</body>
+</html>
