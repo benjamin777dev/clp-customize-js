@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Slider</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f3f4f6;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem;
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .testimonials-wrapper {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .testimonials {
+            display: flex;
+            will-change: transform;
+        }
+
+        .testimonial-group {
+            /* display: grid; */
+            /* grid-template-columns: repeat(2, minmax(0, 1fr)); */
+            display: flex;
+            gap: 1.5rem;
+            padding: 1rem;
+            flex: 0 0 50%;
+        }
+
+        .testimonial-card {
+            /* background-color: #4a5568; */
+            background: white;
+            min-width: 400px;
+            max-width: 450px;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .rating {
+            margin-bottom: 0.5rem;
+        }
+
+        .star {
+            color: #00b67a;
+            font-size: 1.25rem;
+        }
+
+        .review-title {
+            font-size: 1.25rem;
+            color: #2d3748;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .text {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .user-details h3 {
+            font-size: 1rem;
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .verified {
+            color: #00b67a;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .verified::before {
+            content: "✓";
+            font-weight: bold;
+        }
+
+        .date-info {
+            font-size: 0.875rem;
+            color: #718096;
+        }
+
+        .date-info span {
+            font-weight: 500;
+        }
+
+        .weight-loss {
+            display: inline-flex;
+            align-items: center;
+            background: #ebf8ff;
+            color: #2b6cb0;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .left-to-right {
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-group {
+                grid-template-columns: 1fr;
+            }
+
+            .slider-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="slider-container">
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const testimonialData = [
+                {
+                    name: "Christian T.",
+                    date: "August 16, 2024",
+                    rating: 5,
+                    text: "The doctor's availability for checking and questions and all the techs have been extremely helpful. I would highly recommend Remedy Meds.",
+                    lostWeight: "50lbs",
+                    imageBefore: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=400&fit=crop",
+                    imageAfter: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&h=400&fit=crop",
+                    isVerified: true
+                },
+                {
+                    name: "Brenda W.",
+                    date: "October 16, 2024",
+                    rating: 5,
+                    text: "Highly recommend! The support team has been amazing throughout my journey.",
+                    lostWeight: "45lbs",
+                    imageBefore: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=400&fit=crop",
+                    imageAfter: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&h=400&fit=crop",
+                    isVerified: true
+                }
+            ];
+
+            function createSliders() {
+                const container = document.querySelector('.slider-container');
+                container.innerHTML = `
+            <div class="testimonials-wrapper left-to-right">
+                <div class="testimonials">${createContent()}</div>
+            </div>
+            <div class="testimonials-wrapper right-to-left">
+                <div class="testimonials">${createContent()}</div>
+            </div>
+        `;
+            }
+
+            function createContent() {
+                return createTestimonialGroups() + createTestimonialGroups() + createTestimonialGroups();
+            }
+
+            function createTestimonialCard(data) {
+                return `
+            <div class="testimonial-card">
+                <div class="rating">
+                    ${'<span class="star">★</span>'.repeat(data.rating)}
+                </div>
+                <h2 class="review-title">Highly Recommend</h2>
+                <p class="text">${data.text}</p>
+                <div class="user-info">
+                    <div class="user-details">
+                        <h3>${data.name}</h3>
+                        ${data.isVerified ? '<span class="verified">✓ Verified Buyer</span>' : ''}
+                    </div>
+                    <div class="date-info">
+                        <span>Date of experience:</span> ${data.date}
+                    </div>
+                    ${data.lostWeight ? `<div class="weight-loss">lost ${data.lostWeight}</div>` : ''}
+                </div>
+            </div>
+        `;
+            }
+
+            function createTestimonialGroups() {
+                let groups = '';
+                for (let i = 0; i < testimonialData.length; i += 2) {
+                    groups += `
+                <div class="testimonial-group">
+                    ${createTestimonialCard(testimonialData[i])}
+                    ${i + 1 < testimonialData.length ? createTestimonialCard(testimonialData[i + 1]) : ''}
+                </div>
+            `;
+                }
+                return groups;
+            }
+
+            createSliders();
+
+            const leftToRight = document.querySelector('.left-to-right .testimonials');
+            const rightToLeft = document.querySelector('.right-to-left .testimonials');
+
+            let positionLTR = -(leftToRight.scrollWidth / 3);
+            let positionRTL = 0;
+            const speed = 0.5;
+
+            function animate() {
+                positionLTR += speed;
+                positionRTL -= speed;
+
+                if (positionLTR >= 0) {
+                    positionLTR = -(leftToRight.scrollWidth / 3);
+                }
+
+                if (positionRTL <= -(rightToLeft.scrollWidth / 3)) {
+                    positionRTL = 0;
+                }
+
+                leftToRight.style.transform = `translateX(${positionLTR}px)`;
+                rightToLeft.style.transform = `translateX(${positionRTL}px)`;
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        });
+
+    </script>
+</body>
+
+</html>

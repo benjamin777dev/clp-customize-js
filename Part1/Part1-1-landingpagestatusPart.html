@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fe;
+        padding: 20px;
+    }
+
+    .landing-container {
+        max-width: 800px;
+        width: 100%;
+    }
+
+    .landing-cta-button {
+        width: 100%;
+        padding: 20px;
+        background-color: #0a1172;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 30px;
+        transition: background-color 0.3s;
+    }
+
+    .landing-cta-button:hover {
+        background-color: #080d5a;
+    }
+
+    .landing-arrow {
+        font-size: 20px;
+    }
+
+    .landing-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .landing-stat-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .landing-icon {
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fe;
+        border-radius: 50%;
+    }
+
+    .landing-stat-content {
+        flex: 1;
+    }
+
+    .landing-stat-value {
+        font-weight: bold;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .landing-stat-label {
+        color: #666;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        .landing-stats-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<body>
+    <div class="landing-container">
+        <button class="landing-cta-button" onclick="handleClick()">
+            WOOHOO! CHOOSE MY MEDICATION
+            <span class="landing-arrow">→</span>
+        </button>
+
+        <div class="landing-stats-grid">
+            <div class="landing-stat-card">
+                <div class="landing-icon">👤</div>
+                <div class="landing-stat-content">
+                    <div class="landing-stat-label">FREE overnight shipping to</div>
+                    <div class="landing-stat-value">Alabama</div>
+                </div>
+            </div>
+
+            <div class="landing-stat-card">
+                <div class="landing-icon">📋</div>
+                <div class="landing-stat-content">
+                    <div class="landing-stat-value">100,000+</div>
+                    <div class="landing-stat-label">prescriptions written</div>
+                </div>
+            </div>
+
+            <div class="landing-stat-card">
+                <div class="landing-icon">⭐</div>
+                <div class="landing-stat-content">
+                    <div class="landing-stat-value">98%</div>
+                    <div class="landing-stat-label">success rate from the Remedy Meds program</div>
+                </div>
+            </div>
+
+            <div class="landing-stat-card">
+                <div class="landing-icon">🏆</div>
+                <div class="landing-stat-content">
+                    <div class="landing-stat-label">Ranked</div>
+                    <div class="landing-stat-value">#1 Weight Loss</div>
+                    <div class="landing-stat-label">provider by Forbes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleClick() {
+            alert('Starting medication selection process...');
+        }
+    </script>
+</body>
+
+</html>
