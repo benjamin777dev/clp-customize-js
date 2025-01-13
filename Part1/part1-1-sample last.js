@@ -602,6 +602,7 @@ chartScript.onload = () => {
         {
             setTimeout(() => {
                 updateRadioButton();
+                updateContinueButton();
             }, 1000);
 
             const testimonialData = [
@@ -922,7 +923,6 @@ const updateRadioButton = () => {
             }
     
             if (titleElements[1]) {
-                // Style the title element
                 titleElements[1].style.cssText = `
                     font-size: 1.5rem;
                     font-weight: 700;
@@ -930,10 +930,8 @@ const updateRadioButton = () => {
                     color: #1A1F71;
                 `;
 
-                // Check if 'inStock' span already exists
                 const oldInStock = titleElements[1].parentNode.querySelector('#inStock');
                 if (!oldInStock) {
-                    // Create 'In-Stock' span
                     const inStock = document.createElement('span');
                     inStock.id = 'inStock';
                     inStock.style.cssText = `
@@ -944,12 +942,10 @@ const updateRadioButton = () => {
                     `;
                     inStock.textContent = 'In-Stock';
             
-                    // Create the pulsating dot
                     const pulsateSpan = document.createElement('span');
                     pulsateSpan.className = 'pulsating-dot';
                     inStock.appendChild(pulsateSpan);
             
-                    // Append 'In-Stock' to the parent of titleElements[1]
                     titleElements[1].parentNode.appendChild(inStock);
                 }
             }
@@ -992,5 +988,20 @@ const updateRadioButton = () => {
         btnElements[0]?.click();
     } else {
         console.error('Parent element not found');
+    }
+}
+
+const updateContinueButton = ()=>{
+    const bottomBtnParent= document.querySelector(
+        '.sticky.bottom-0.left-0.z-30.order-\\[999999999\\].-mx-1.flex.w-\\[calc\\(100\\%\\+8px\\)\\].flex-grow.items-end.justify-end'
+      );
+    if(bottomBtnParent){
+        const btn = bottomBtnParent.querySelector('button');
+        console.log('BTN', btn);
+        btn.className = "landing-cta-button"
+        btn.innerHTML = `
+            PROCEED TO CHECKOUT
+            <span class="landing-arrow">→</span>
+        `
     }
 }
