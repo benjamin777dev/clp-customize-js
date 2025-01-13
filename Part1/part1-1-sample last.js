@@ -997,7 +997,6 @@ const updateContinueButton = ()=>{
       );
     if(bottomBtnParent){
         const btn = bottomBtnParent.querySelector('button');
-        console.log('BTN', btn);
         btn.className = "landing-cta-button"
         btn.innerHTML = `
             PROCEED TO CHECKOUT
