@@ -1,5 +1,5 @@
 const container = document.getElementById('script-container');
-// if (!container) return;
+if (!container) return;
 
 container.parentNode.parentNode.style.overflowX = 'hidden';
 
@@ -243,15 +243,9 @@ chartScript.onload = () => {
                     .slider-container {
                         position: absolute;
                         width: calc(100% + 2000px);
-                        
                         margin: 2rem;
-                        background: white;
-                        border-radius: 1rem;
-                        padding: 2rem;
-                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
                         display: flex;
                         flex-direction: column;
-                        gap: 2rem;
                         margin-left: -1000px;
                         margin-right: -1000px;
                     }
@@ -278,13 +272,14 @@ chartScript.onload = () => {
                     }
 
                     .testimonial-amimation-card {
-                        /* background-color: #4a5568; */
                         background: white;
-                        min-width: 400px;
-                        max-width: 450px;
+                        min-width: 380px;
+                        max-width: 380px;
                         padding: 1.5rem;
                         border-radius: 0.5rem;
                         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                        display: flex;
+                        flex-direction: column;
                     }
 
                     .rating {
@@ -298,13 +293,13 @@ chartScript.onload = () => {
 
                     .review-title {
                         font-size: 1.25rem;
-                        color: #2d3748;
+                        color: #080d5a;
                         margin-bottom: 0.75rem;
                         font-weight: 600;
                     }
 
                     .text {
-                        color: #4a5568;
+                        color: #080d5a;
                         margin-bottom: 1.5rem;
                         line-height: 1.5;
                         font-size: 0.95rem;
@@ -318,7 +313,7 @@ chartScript.onload = () => {
 
                     .user-details h3 {
                         font-size: 1rem;
-                        color: #2d3748;
+                        color: #080d5a;
                         font-weight: 600;
                         margin-bottom: 0.25rem;
                     }
@@ -334,11 +329,19 @@ chartScript.onload = () => {
                     .verified::before {
                         content: "✓";
                         font-weight: bold;
+                        background-color:#00b67a;
+                        color:#fff;
+                        border-radius:100%;
+                        padding: 1px 4.5px;
+                        font-size:10px;
                     }
 
                     .date-info {
-                        font-size: 0.875rem;
-                        color: #718096;
+                        font-size: 12px;
+                        color: #080d5a;
+                        display:flex;
+                        align-items:center;
+                        justify-content:space-between;
                     }
 
                     .date-info span {
@@ -348,18 +351,12 @@ chartScript.onload = () => {
                     .weight-loss {
                         display: inline-flex;
                         align-items: center;
-                        background: #ebf8ff;
-                        color: #2b6cb0;
+                        background:rgb(202, 232, 248);
+                        color: #080d5a;
                         padding: 0.25rem 0.75rem;
                         border-radius: 9999px;
-                        font-size: 0.875rem;
+                        font-size: 1rem;
                         font-weight: 500;
-                        margin-top: 0.5rem;
-                    }
-
-                    .left-to-right {
-                        border-bottom: 2px solid #e5e7eb;
-                        padding-bottom: 2rem;
                     }
 
                     @media (max-width: 768px) {
@@ -375,9 +372,8 @@ chartScript.onload = () => {
 
 
 
-                <section style = 'position:relative; height:1340px'>
+                <section style = 'position:relative; height:1150px'>
                     <div class="slider-container">
-                    slider---------------------------------
                     </div>
                 </section>
 
@@ -610,23 +606,33 @@ chartScript.onload = () => {
 
             const testimonialData = [
                 {
-                    name: "Christian T.",
+                    name: "Ariane B.",
                     date: "August 16, 2024",
                     rating: 5,
-                    text: "The doctor's availability for checking and questions and all the techs have been extremely helpful. I would highly recommend Remedy Meds.",
-                    lostWeight: "50lbs",
-                    imageBefore: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=400&fit=crop",
-                    imageAfter: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&h=400&fit=crop",
+                    title:"GLP-1 gave me my life back",
+                    text: "I have been using GLP-1 for a year and a half and have lost 79 pounds so far. My BMI was 39.9, on the limit for morbid obesity. Now my BMI is 27.3. GLP-1 gave me my life back.",
+                    lostWeight: "79lbs",
+                    image: "https://res.cloudinary.com/ddjyuqhhg/image/upload/v1736667011/Kandice_C_lost_72_lbs_f6feno.webp",
                     isVerified: true
                 },
                 {
-                    name: "Brenda W.",
+                    name: "Caitlin T",
                     date: "October 16, 2024",
                     rating: 5,
-                    text: "Highly recommend! The support team has been amazing throughout my journey.",
-                    lostWeight: "45lbs",
-                    imageBefore: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=400&fit=crop",
-                    imageAfter: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&h=400&fit=crop",
+                    title: "I’ve witnessed remarkable progress",
+                    text: "I’ve lost an impressive 50 pounds. It’s been an incredible transformation, and I’m proud of the commitment I’ve shown to my well-being. <br> Over the last six months, I’ve been dedicated to my health journey with GLP-1, and I’m delighted to share that I’ve lost an impressive 50 pounds. It’s been an incredible transformation.",
+                    lostWeight: "50lbs",
+                    image: "https://res.cloudinary.com/ddjyuqhhg/image/upload/v1736667011/Kat_R_lost_28_lbs_gcv90m.webp",
+                    isVerified: true
+                },
+                {
+                    name: "Claudia C",
+                    date: "October 16, 2024",
+                    rating: 5,
+                    title: "GLP-1 medication has been my greatest asset",
+                    text: "I am down 52lbs and feel a weight has been lifted off my shoulders (literally). It’s been an incredible journey, and my only regret is not starting sooner. I will never regret improving my health.",
+                    lostWeight: "52lbs",
+                    image: "https://res.cloudinary.com/ddjyuqhhg/image/upload/v1736667011/Ariane_B_lost_79_lbs_b76msr.webp",
                     isVerified: true
                 }
             ];
@@ -640,9 +646,6 @@ chartScript.onload = () => {
                     <div class="testimonials-wrapper right-to-left">
                         <div class="testimonials">${createContent()}</div>
                     </div>
-                    <div class="testimonials-wrapper left-to-right2">
-                        <div class="testimonials">${createContent()}</div>
-                    </div>
                 `;
             }
 
@@ -652,24 +655,38 @@ chartScript.onload = () => {
 
             function createTestimonialCard(data) {
                 return `
-            <div class="testimonial-amimation-card">
-                <div class="rating">
-                    ${'<span class="star">★</span>'.repeat(data.rating)}
-                </div>
-                <h2 class="review-title">Highly Recommend</h2>
-                <p class="text">${data.text}</p>
-                <div class="user-info">
-                    <div class="user-details">
-                        <h3>${data.name}</h3>
-                        ${data.isVerified ? '<span class="verified">✓ Verified Buyer</span>' : ''}
+                    <div class="testimonial-amimation-card" style="padding:0; overflow:hidden">
+                        <img src="${data.image}"/>
+                        <div class="user-info p-6">
+                            <div class="user-details">
+                                <h3>${data.name}</h3>
+                                ${data.isVerified ? '<span class="verified">Verified Buyer</span>' : ''}
+                            </div>
+                            <div class="date-info">
+                                <span style="font-weight:bold;">Date of experience:</span> ${data.date}
+                                ${data.lostWeight ? `<div class="weight-loss">lost <span style="font-weight:700; margin-left:5px; font-size:1.15rem">${data.lostWeight}</span></div>` : ''}
+                            </div>
+                        </div>
                     </div>
-                    <div class="date-info">
-                        <span>Date of experience:</span> ${data.date}
+
+                    <div class="testimonial-amimation-card">
+                        <div class="rating inline-flex gap-1">
+                            ${'<span class="star inline-flex"><svg height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.9893 0H0V19.9893H19.9893V0Z" fill="#00B67A"></path><path d="M13.0363 12.3284L9.99627 13.0988L14.3065 16.2429L13.0363 12.3284Z" fill="white"></path><path d="M11.6412 8.03898H16.9925L12.6823 11.1623L10.0171 13.078L5.68607 16.2013L7.33102 11.1623L3 8.03898H8.35131L9.99627 3L11.6412 8.03898Z" fill="white"></path></svg></span>'.repeat(data.rating)}
+                        </div>
+                        <h2 class="review-title">${data.title}</h2>
+                        <p class="text" style="flex:1">${data.text}</p>
+
+                        <div class="user-info">
+                            <div class="user-details">
+                                <h3>${data.name}</h3>
+                                ${data.isVerified ? '<span class="verified">Verified Buyer</span>' : ''}
+                            </div>
+                            <div class="date-info">
+                                <span style="font-weight:bold;">Date of experience:</span> ${data.date}
+                            </div>
+                        </div>
                     </div>
-                    ${data.lostWeight ? `<div class="weight-loss">lost ${data.lostWeight}</div>` : ''}
-                </div>
-            </div>
-        `;
+                `;
             }
 
             function createTestimonialGroups() {
@@ -688,22 +705,18 @@ chartScript.onload = () => {
             createSliders();
 
             const leftToRight = document.querySelector('.left-to-right .testimonials');
-            const leftToRight2 = document.querySelector('.left-to-right2 .testimonials');
             const rightToLeft = document.querySelector('.right-to-left .testimonials');
 
             let positionLTR = -(leftToRight.scrollWidth / 3);
-            let positionLTR2 = -(leftToRight2.scrollWidth / 3);
             let positionRTL = 0;
             const speed = 0.5;
 
             function animate() {
                 positionLTR += speed;
-                positionLTR2 += speed;
                 positionRTL -= speed;
 
                 if (positionLTR >= 0) {
                     positionLTR = -(leftToRight.scrollWidth / 3);
-                    positionLTR2 = -(leftToRight.scrollWidth / 3);
                 }
 
                 if (positionRTL <= -(rightToLeft.scrollWidth / 3)) {
@@ -711,7 +724,6 @@ chartScript.onload = () => {
                 }
 
                 leftToRight.style.transform = `translateX(${positionLTR}px)`;
-                leftToRight2.style.transform = `translateX(${positionLTR2}px)`;
                 rightToLeft.style.transform = `translateX(${positionRTL}px)`;
 
                 requestAnimationFrame(animate);
@@ -910,13 +922,38 @@ const updateRadioButton = () => {
             }
     
             if (titleElements[1]) {
+                // Style the title element
                 titleElements[1].style.cssText = `
                     font-size: 1.5rem;
                     font-weight: 700;
                     margin-top: 7px;
                     color: #1A1F71;
                 `;
+
+                // Check if 'inStock' span already exists
+                const oldInStock = titleElements[1].parentNode.querySelector('#inStock');
+                if (!oldInStock) {
+                    // Create 'In-Stock' span
+                    const inStock = document.createElement('span');
+                    inStock.id = 'inStock';
+                    inStock.style.cssText = `
+                        float: right; 
+                        margin-left: auto; 
+                        color: #1A1F71; 
+                        font-size: 12px;
+                    `;
+                    inStock.textContent = 'In-Stock';
+            
+                    // Create the pulsating dot
+                    const pulsateSpan = document.createElement('span');
+                    pulsateSpan.className = 'pulsating-dot';
+                    inStock.appendChild(pulsateSpan);
+            
+                    // Append 'In-Stock' to the parent of titleElements[1]
+                    titleElements[1].parentNode.appendChild(inStock);
+                }
             }
+            
     
             const spanElements = btn.querySelectorAll('span');
             if (spanElements[0]) {
@@ -929,26 +966,6 @@ const updateRadioButton = () => {
                     border-radius: 5px;
                     border-color: transparent;
                 `;
-            }
-    
-            const pElement = btn.querySelector('p');
-            if (pElement) {
-                pElement.style.cssText = `
-                        display: flex; 
-                        flex-wrap: wrap;
-                        color: #1A1F71;
-                    `;
-    
-                if (!pElement.querySelector('.pulsating-dot')) {
-                    const InStock = document.createElement('span');
-                    InStock.style.cssText = 'float: right; margin-left: auto;';
-                    InStock.textContent = 'In Stock';
-    
-                    const pulsateSpan = document.createElement('span');
-                    pulsateSpan.className = 'pulsating-dot';
-                    InStock.appendChild(pulsateSpan);
-                    pElement.appendChild(InStock);
-                }
             }
         });
     
