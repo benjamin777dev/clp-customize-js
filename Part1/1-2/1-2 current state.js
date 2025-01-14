@@ -1,5 +1,5 @@
 const targetElement = document.getElementById("script-container");
-if (!targetElement) return;
+// if (!targetElement) return;
 
 targetElement.innerHTML = `
     <style>
@@ -195,7 +195,7 @@ const updateCheckoutBtn = ()=>{
                 </path>
             </svg> COMPLETE PURCHASE
         </span>
-        <span class="text-xs font-normal whitespace-normal w-4/5 md:w-full">TRY IT RISK FREE! - LOSE 10% OF YOUR BODYWEIGHT OR YOUR MONEY BACK</span>
+        <span class="text-xs font-normal whitespace-normal w-4/5 md:w-full">TRY IT RISK FREE! - LOSE 10% OF YOUR BODYWEIGHT OR YOUR MONEY BACK*</span>
     `
 }
 
@@ -444,7 +444,7 @@ targetNextslide.innerHTML = `
                 <p>I have been using GLP-1 for a year and a half and have lost 79 pounds so far. My BMI was 39.9, on the limit for morbid obesity. Now my BMI is 27.3. GLP-1 gave me my life back</p>
                 <div class="author">
                     <div class="author-info">
-                        <img src="https://remedymeds.com/_next/image?url=%2Fimages%2Ftestimonials%2Famber.png&w=64&q=75" alt="author avatar">
+                        <img src="https://i.postimg.cc/SspS8rvY/Ariane-Barcellos-lost-79-lbs.png" alt="author avatar">
                         <h3 class="font-bold">Ariane B. <span class="verified"></span></h3>
                     </div>
                 </div>
@@ -458,7 +458,7 @@ targetNextslide.innerHTML = `
                 <p>I am down 52lbs and feel a weight has been lifted off my shoulders (literally). It’s been an incredible journey, and my only regret is not starting sooner. I will never regret improving my health.</p>
                 <div class="author">
                     <div class="author-info">
-                        <img src="https://remedymeds.com/_next/image?url=%2Fimages%2Ftestimonials%2Fbernadette.png&w=64&q=75" alt="author avatar">
+                        <img src="https://i.postimg.cc/cJ31rjXN/Claudia-Coy-lost-52-lbs.png" alt="author avatar">
                         <h3 class="font-bold">Claudia C. <span class="verified"></span></h3>
                     </div>
                 </div>
@@ -472,7 +472,7 @@ targetNextslide.innerHTML = `
                 <p>I could never get rid of the excess weight. I even got lipo, but nothing worked. I was then invited to take GLP-1 and I lost 28 lbs within the first year.</p>
                 <div class="author">
                     <div class="author-info">
-                        <img src="https://remedymeds.com/_next/image?url=%2Fimages%2Ftestimonials%2Fbrenda.png&w=64&q=75" alt="author avatar">
+                        <img src="https://i.postimg.cc/cL241Z7m/Kat-Ristow-lost-28-lbs-28-lbs-2.png" alt="author avatar">
                         <h3 class="font-bold">Kat R. <span class="verified"></span></h3>
                     </div>
                 </div>
@@ -492,7 +492,7 @@ targetNextslide.innerHTML = `
             </svg>
         </div>
         <div class="badge-text">
-            <strong>Weight-loss guarantee:</strong> lose at least 10% of your bodyweight in four months, or your money back!
+            <strong>Weight-loss guarantee:</strong> lose at least 10% of your bodyweight in four months, or your money back!*
         </div>
     </div>
 
@@ -502,7 +502,7 @@ targetNextslide.innerHTML = `
             <h2 class="font-semibold">Need Help?</h2>
             <div class="availability">
                 <span class="pulsating-dot"></span>
-                Available <span style="font-weight: bold">10 AM - 6 PM ET, Mon-Fir</span>
+                Available <span style="font-weight: bold">10 AM - 6 PM ET, Mon-Fri</span>
             </div>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; background-color: #f1f7fe; border-radius: 999px; padding: 5px; margin: 10px 0;">
@@ -514,7 +514,7 @@ targetNextslide.innerHTML = `
                 <path fill="#1A1F71"
                     d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1zM19 12h2c0-4.8-3.9-8.7-8.7-8.7v2c3.7 0 6.7 3 6.7 6.7z" />
             </svg>
-            <a href="tel:+15512399025">+1 (551) 239-9025</a>
+            <a href="tel:+13107441417">+1 (310) 744-1417</a>
         </div>
     </div>
 
@@ -568,5 +568,3 @@ setTimeout(() => {
     
     showTestimonial(currentIndex);
 }, 5000);
-
-
