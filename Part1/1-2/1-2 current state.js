@@ -1,93 +1,56 @@
 const targetElement = document.getElementById("script-container");
 if (!targetElement) return;
 
-// Add the timer inside the target element with a compact modern design
-// targetElement.innerHTML = `
-//     <style>
-//         /* Animations */
-//         @keyframes fadeIn {
-//             from { opacity: 0; transform: translateY(-10px); }
-//             to { opacity: 1; transform: translateY(0); }
-//         }
+targetElement.innerHTML = `
+    <style>
+        .pulsating-dot {
+            display: block;
+            width: 10px; /* Size of the dot */
+            height: 10px;
+            float:left;
+            margin-right: 2px;
+            background-color: #00c389; /* Green color */
+            border-radius: 50%;
+            position: relative; /* Necessary for positioning the pseudo-element */
 
-//         @keyframes hourglassSpin {
-//             0% { transform: rotate(0deg); }
-//             50% { transform: rotate(180deg); }
-//             100% { transform: rotate(360deg); }
-//         }
+        }
 
-//         /* Container Styles */
-//         .timer-container {
-//             display: flex;
-//             align-items: center;
-//             justify-content: space-between;
-//             padding: 0.6rem;
-//             margin: 1rem auto;
-//             max-width: 600px;
-//             background: linear-gradient(135deg, #eef6fc, #f5faff);
-//             border: 1px solid #d1e3f8;
-//             border-radius: 8px;
-//             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-//             animation: fadeIn 0.5s ease-out;
-//         }
+        .pulsating-dot::Before {
+            content: ''; /* Required for pseudo-elements to render */
+            position: absolute; /* Position relative to .pulsating-dot */
+            top: 0;
+            left: 0;
+            width: 10px; /* Same size as the dot */
+            height: 10px;
+            background-color: #00c389; /* Green color */
+            border-radius: 50%;
+            animation: pulsate 1s infinite ease-in-out;
+            opacity: 0.6; /* Optional: Slight transparency for better effect */
+        }
 
-//         .timer-container:hover {
-//             transform: translateY(-2px);
-//             transition: transform 0.3s ease;
-//         }
+        @keyframes pulsate {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(2);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    </style>
+`;
 
-//         /* Hourglass Icon */
-//         .timer-icon {
-//             background: linear-gradient(135deg, #2979FF, #1565C0);
-//             color: white;
-//             font-weight: bold;
-//             font-size: 1.1rem;
-//             display: flex;
-//             align-items: center;
-//             justify-content: center;
-//             width: 40px;
-//             height: 40px;
-//             border-radius: 50%;
-//             animation: hourglassSpin 2s linear infinite;
-//         }
 
-//         /* Timer Text */
-//         .timer-text {
-//             font-family: 'Figtree', sans-serif;
-//             color: #0D47A1;
-//             font-size: 0.9rem; /* Slightly smaller font size */
-//             font-weight: 600;
-//             line-height: 1.2;
-//         }
-
-//         /* Countdown Timer */
-//         .countdown-timer {
-//             font-weight: bold;
-//             font-size: 1.2rem; /* Reduced size */
-//             color: #2979FF;
-//             margin-left: 0.5rem;
-//         }
-//     </style>
-
-//     <div class="timer-container">
-//         <!-- Animated Hourglass Icon -->
-//         <div class="timer-icon">⌛</div>
-
-//         <!-- Timer Details -->
-//         <div style="flex: 1; margin-left: 1rem;">
-//             <div class="timer-text">
-//                 Sale ends soon! Your cart is reserved for: 
-//                 <span id="countdown-timer" class="countdown-timer">15:00</span>
-//             </div>
-//         </div>
-//     </div>
-// `;
-targetElement.innerHTML = ``;
-
-setTimeout(() => {
+const generateTimerElement = ()=>{
     const gridElement = document.querySelector('.grid.h-fit.w-full.grow.gap-3.lg\\:gap-8');
     if(gridElement){
         const countdownTimerElement = document.createElement('div');
+        countdownTimerElement.id = 'countdownTimer';
         countdownTimerElement.innerHTML = `
             <style>
                 /* Animations */
@@ -168,16 +131,26 @@ setTimeout(() => {
                 </div>
             </div>
         `;
-        
-        gridElement.insertBefore(countdownTimerElement, gridElement.firstChild);
+    
+        const existTimerElement = gridElement.querySelector('#countdownTimer');
+        if(!existTimerElement){
+            gridElement.insertBefore(countdownTimerElement, gridElement.firstChild);
+        } else {
+            console.error('timer already exists')
+        }
+    
     } else {
         console.error('The grid element was not found. Please check the selector.');
     }
+}
+
+
+setTimeout(() => {
+    generateTimerElement();
     
     // Countdown Timer Logic
     const countdownTimer = document.getElementById("countdown-timer");
     let remainingTime = 15 * 60; // 15 minutes in seconds
-    
     function updateTimer() {
         const minutes = Math.floor(remainingTime / 60);
         const seconds = remainingTime % 60;
@@ -195,15 +168,16 @@ setTimeout(() => {
     }
     
     updateTimer();
+    updateCheckoutBtn();
+
 }, 3000);
 
-
-
-setTimeout(() => {
+const updateCheckoutBtn = ()=>{
     const checkoutBtn = document.querySelector('button[type="submit"][tabindex="0"]');
     if (checkoutBtn) {
       checkoutBtn.style.borderRadius = '5px';
       checkoutBtn.style.padding = '10px';
+      checkoutBtn.style.gap = '1px';
       checkoutBtn.style.display = 'flex';
       checkoutBtn.style.flexDirection = 'column';
       checkoutBtn.style.height = 'auto';
@@ -213,21 +187,20 @@ setTimeout(() => {
     }
     
     checkoutBtn.innerHTML = `
-        <span class="inline-flex gap-1 text-lg items-center">
+        <span class="inline-flex gap-1 text-base items-center font-normal">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" style="width:20px">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z">
                 </path>
-            </svg> Complete Purchase
+            </svg> COMPLETE PURCHASE
         </span>
-        <span class="text-xs whitespace-normal w-4/5 md:w-full">Try it risk free! - LOSE 10% OF Your Bodyweight Or Your money back</span>
+        <span class="text-xs font-normal whitespace-normal w-4/5 md:w-full">TRY IT RISK FREE! - LOSE 10% OF YOUR BODYWEIGHT OR YOUR MONEY BACK</span>
     `
-}, 3000);
-
-
+}
 
 const targetNextslide = document.createElement('div');
+targetNextslide.id = 'slideContainer'
 targetNextslide.style.order = '99999';
 targetNextslide.innerHTML = `
     <style>
@@ -235,18 +208,18 @@ targetNextslide.innerHTML = `
             width: 100%;
             max-width: 600px;
             position: relative;
-            padding: 20px;
+            margin-bottom: 20px;
         }
         
         .testimonial-slider {
             position: relative;
-            overflow: hidden;
-            height: 300px;
+            min-height: 250px;
         }
         
         .testimonial {
             position: absolute;
             width: 100%;
+            height: 100%;
             opacity: 0;
             transform: translateX(100%);
             transition: all 0.5s ease;
@@ -260,35 +233,50 @@ targetNextslide.innerHTML = `
             opacity: 1;
             transform: translateX(0);
         }
-        
+
+        .testimonial > p {
+            color: #1A1F71;
+        /*    overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            max-height: 200px;" */
+        }
+
         .stars {
             color: #ffd700;
             font-size: 1.2rem;
             margin-bottom: 1rem;
         }
         
-        h2 {
-            color: var(--text-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+        h3 {
+            color: #1A1F71;
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
         }
         
         .author {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
             margin-top: 1rem;
         }
         
+        .author-info {
+            gap: 10px;
+            display: flex;
+            align-items: center;
+        }
+
         .author-info h3 {
             font-size: 1rem;
-            color: var(--text-color);
+            color: #1A1F71;
+        }
+        
+        .author-info > img {
+            border-radius: 9999px;
+            width: 40px;
+            height: 40px
         }
         
         .verified {
@@ -297,7 +285,7 @@ targetNextslide.innerHTML = `
         }
         
         .date {
-            color: #666;
+            color: #1A1F71;
             font-size: 0.875rem;
         }
         
@@ -305,7 +293,7 @@ targetNextslide.innerHTML = `
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: white;
+            background: #1A1F71;
             border: none;
             width: 40px;
             height: 40px;
@@ -313,13 +301,13 @@ targetNextslide.innerHTML = `
             cursor: pointer;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             font-size: 1.2rem;
-            color: #1A1F71;
+            color: #fff;
             transition: all 0.3s ease;
         }
         
         .nav-btn:hover {
-            background: #1A1F71;
-            color: white;
+            background: #fff;
+            color: #1A1F71;
         }
         
         .prev-btn {
@@ -374,7 +362,7 @@ targetNextslide.innerHTML = `
 
         .badge-text {
             font-size: 14px;
-            color: #0c4a6e;
+            color: #1A1F71;
             line-height: 1.4;
         }
 
@@ -397,7 +385,7 @@ targetNextslide.innerHTML = `
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #4a5568;
+            color: #1A1F71;
             font-size: 14px;
             margin-bottom: 16px;
         }
@@ -410,9 +398,9 @@ targetNextslide.innerHTML = `
         }
 
         .specialist-text {
-            color: #4a5568;
-            font-size: 15px;
-            margin-bottom: 16px;
+            color: #1A1F71;
+            font-size: 16px;
+            font-weight: 600;
         }
 
         .contact-number {
@@ -422,20 +410,26 @@ targetNextslide.innerHTML = `
         }
 
         .contact-number a {
-            color: #1a237e;
+            color: #1A1F71;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
         }
 
         .agent-image {
             width: 48px;
             height: 48px;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="%23e2e8f0"/><path d="M12 13c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm0 2c-2.7 0-8 1.3-8 4v2h16v-2c0-2.7-5.3-4-8-4z" fill="%2394a3b8"/></svg>');
-            position: absolute;
-            right: 24px;
-            bottom: 24px;
             border-radius: 50%;
+        }
+        
+        .verified::before {
+            content: "✓";
+            font-weight: bold;
+            background-color:#00b67a;
+            color:#fff;
+            border-radius:100%;
+            padding: 1px 4.5px;
+            font-size:10px;
         }
 
     </style>
@@ -443,42 +437,45 @@ targetNextslide.innerHTML = `
     <div class="testimonial-container">
         <div class="testimonial-slider">
             <div class="testimonial active">
-            <div class="stars">★★★★★</div>
-            <h2>Great Experience</h2>
-            <p>The whole process was positive. They are very proactive and quick to respond with an...</p>
-            <div class="author">
-                <div class="author-info">
-                <h3>Amanda L.</h3>
-                <span class="verified">✓ Verified Buyer</span>
+                <div class="rating inline-flex gap-1">
+                    ${'<span class="star inline-flex"><svg height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.9893 0H0V19.9893H19.9893V0Z" fill="#00B67A"></path><path d="M13.0363 12.3284L9.99627 13.0988L14.3065 16.2429L13.0363 12.3284Z" fill="white"></path><path d="M11.6412 8.03898H16.9925L12.6823 11.1623L10.0171 13.078L5.68607 16.2013L7.33102 11.1623L3 8.03898H8.35131L9.99627 3L11.6412 8.03898Z" fill="white"></path></svg></span>'.repeat(5)}
                 </div>
-                <div class="date">August 16, 2024</div>
-            </div>
+                <h3 class="font-semibold">GLP-1 gave me my life back</h3>
+                <p>I have been using GLP-1 for a year and a half and have lost 79 pounds so far. My BMI was 39.9, on the limit for morbid obesity. Now my BMI is 27.3. GLP-1 gave me my life back</p>
+                <div class="author">
+                    <div class="author-info">
+                        <img src="https://remedymeds.com/_next/image?url=%2Fimages%2Ftestimonials%2Famber.png&w=64&q=75" alt="author avatar">
+                        <h3 class="font-bold">Ariane B. <span class="verified"></span></h3>
+                    </div>
+                </div>
             </div>
 
             <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <h2>Excellent Service</h2>
-            <p>Outstanding customer support and quality products. Would definitely recommend!</p>
-            <div class="author">
-                <div class="author-info">
-                <h3>Michael R.</h3>
-                <span class="verified">✓ Verified Buyer</span>
+                <div class="rating inline-flex gap-1">
+                    ${'<span class="star inline-flex"><svg height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.9893 0H0V19.9893H19.9893V0Z" fill="#00B67A"></path><path d="M13.0363 12.3284L9.99627 13.0988L14.3065 16.2429L13.0363 12.3284Z" fill="white"></path><path d="M11.6412 8.03898H16.9925L12.6823 11.1623L10.0171 13.078L5.68607 16.2013L7.33102 11.1623L3 8.03898H8.35131L9.99627 3L11.6412 8.03898Z" fill="white"></path></svg></span>'.repeat(5)}
                 </div>
-                <div class="date">August 15, 2024</div>
-            </div>
+                <h3 class="font-semibold">GLP-1 medication has been my greatest asset</h3>
+                <p>I am down 52lbs and feel a weight has been lifted off my shoulders (literally). It’s been an incredible journey, and my only regret is not starting sooner. I will never regret improving my health.</p>
+                <div class="author">
+                    <div class="author-info">
+                        <img src="https://remedymeds.com/_next/image?url=%2Fimages%2Ftestimonials%2Fbernadette.png&w=64&q=75" alt="author avatar">
+                        <h3 class="font-bold">Claudia C. <span class="verified"></span></h3>
+                    </div>
+                </div>
             </div>
 
             <div class="testimonial">
-            <div class="stars">★★★★★</div>
-            <h2>Very Satisfied</h2>
-            <p>Everything exceeded my expectations. The team was professional and helpful.</p>
-            <div class="author">
-                <div class="author-info">
-                <h3>Sarah K.</h3>
-                <span class="verified">✓ Verified Buyer</span>
+                <div class="rating inline-flex gap-1">
+                    ${'<span class="star inline-flex"><svg height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.9893 0H0V19.9893H19.9893V0Z" fill="#00B67A"></path><path d="M13.0363 12.3284L9.99627 13.0988L14.3065 16.2429L13.0363 12.3284Z" fill="white"></path><path d="M11.6412 8.03898H16.9925L12.6823 11.1623L10.0171 13.078L5.68607 16.2013L7.33102 11.1623L3 8.03898H8.35131L9.99627 3L11.6412 8.03898Z" fill="white"></path></svg></span>'.repeat(5)}
                 </div>
-                <div class="date">August 14, 2024</div>
-            </div>
+                <h3 class="font-semibold">Thank you GLP-1!</h3>
+                <p>I could never get rid of the excess weight. I even got lipo, but nothing worked. I was then invited to take GLP-1 and I lost 28 lbs within the first year.</p>
+                <div class="author">
+                    <div class="author-info">
+                        <img src="https://remedymeds.com/_next/image?url=%2Fimages%2Ftestimonials%2Fbrenda.png&w=64&q=75" alt="author avatar">
+                        <h3 class="font-bold">Kat R. <span class="verified"></span></h3>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -501,20 +498,24 @@ targetNextslide.innerHTML = `
 
     <!-- Need Help section -->
     <div class="help-section">
-        <h2>Need Help?</h2>
-        <div class="availability">
-            <span class="status-dot"></span>
-            Available 8 AM - 8 PM ET
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 class="font-semibold">Need Help?</h2>
+            <div class="availability">
+                <span class="pulsating-dot"></span>
+                Available <span style="font-weight: bold">10 AM - 6 PM ET, Mon-Fir</span>
+            </div>
         </div>
-        <p class="specialist-text">Our program specialists are here for you</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; background-color: #f1f7fe; border-radius: 999px; padding: 5px; margin: 10px 0;">
+            <p class="specialist-text ml-2">Our program specialists are here for you</p>
+            <img class="agent-image" src="https://remedymeds.com/_next/image?url=%2Fimages%2Fsupport-rep.png&w=128&q=75"/>
+        </div>
         <div class="contact-number">
             <svg viewBox="0 0 24 24" width="20" height="20">
-                <path fill="#1a237e"
+                <path fill="#1A1F71"
                     d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1zM19 12h2c0-4.8-3.9-8.7-8.7-8.7v2c3.7 0 6.7 3 6.7 6.7z" />
             </svg>
             <a href="tel:+15512399025">+1 (551) 239-9025</a>
         </div>
-        <div class="agent-image"></div>
     </div>
 
 
@@ -522,12 +523,21 @@ targetNextslide.innerHTML = `
 
 setTimeout(() => {
     const targetElementex = document.querySelector('.order-last.-mt-4');
-
     if (targetElementex) {
-        targetElementex.after(targetNextslide);
+        const existingSlider = targetElementex.parentNode.querySelector('#slideContainer');
+        if (!existingSlider) {
+            if (typeof targetNextslide !== 'undefined') {
+                targetElementex.after(targetNextslide);
+            } else {
+                console.error('targetNextslide is not defined.');
+            }
+        } else {
+            console.warn('Slider already exists within the target element.');
+        }
     } else {
-        console.warn('The target element was not found.');
+        console.warn('The target element ".order-last.-mt-4" was not found.');
     }
+    
     const testimonials = document.querySelectorAll('.testimonial');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
