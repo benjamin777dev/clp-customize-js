@@ -42,7 +42,7 @@ chartScript.onload = () => {
             <div style="max-width: 900px; margin: 0 auto; font-family: 'Figtree', sans-serif; color: #1A1F71;">
                 <!-- Chart Section -->
                 <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.4; text-align: center; color: #1A1F71;">
-                    <span style="display: inline-block; background: linear-gradient(90deg, #FFB400, #FF4500); background-clip: text; -webkit-background-clip: text; color: transparent;">Congrats! ${firstName}</span>
+                    <span style="display: inline-block; background: linear-gradient(90deg, #FFB400, #FF4500); background-clip: text; -webkit-background-clip: text; color: transparent;">Congrats ${firstName}!</span>
                     We can help you lose up to 
                     <span id="animatedWeight" style="display: inline-block; background: linear-gradient(90deg, #FF4500, #FFB400); background-clip: text; -webkit-background-clip: text; color: transparent;">0</span> pounds 
                     by ${formattedDate}!
@@ -220,7 +220,7 @@ chartScript.onload = () => {
 
                     .testimonial-amimation-card {
                         background: white;
-                        min-width: 300px;
+                        min-width: 320px;
                         max-width: 380px;
                         padding: 1.5rem;
                         border-radius: 0.5rem;
@@ -319,17 +319,17 @@ chartScript.onload = () => {
 
 
 
-                <section style = 'position:relative; height:1005px'>
+                <section style = 'position:relative; height:1024px'>
                     <div class="slider-container">
                     </div>
                 </section>
 
 
                 <!-- Info Section -->
-                <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.3; text-align: center;">
+                <h1 style="font-size: 1.5rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 1.5rem; line-height: 1.3; text-align: center;"  id="scrollTargetPosition">
                     Choose your medication to get started <span style="color: #FFB400;">TODAY</span>
                 </h1>
-                <ul style="list-style: none; padding: 0; margin-bottom: 10px; max-width: 600px;">
+                <ul style="list-style: none; padding: 0; margin-bottom: 20px; max-width: 600px;">
                     <li style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
                         <span style="color: #68B04A; font-size: 1.2rem; line-height: 1;">✔</span>
                         <span style="font-size: 1rem; font-weight: 600; line-height: 1.3;">
@@ -364,7 +364,11 @@ chartScript.onload = () => {
             </div>
         `;
 
-        
+        const targetPostionElement = document.getElementById('scrollTargetPosition');
+        document.getElementById("scrollButton").addEventListener("click", function () {
+            targetPostionElement.scrollIntoView({ behavior: "smooth" });
+        });
+
 
         // Chart data with dynamic styles
         const weightData = [
@@ -817,9 +821,9 @@ document.head.appendChild(style);
 const updateRadioButton = () => {
     const parentElement = document.querySelector('.flex.flex-wrap.justify-center.gap-2');
     console.log('parentElement', parentElement)
-    document.getElementById("scrollButton").addEventListener("click", function () {
-        parentElement.scrollIntoView({ behavior: "smooth" });
-    });
+    // document.getElementById("scrollButton").addEventListener("click", function () {
+    //     parentElement.scrollIntoView({ behavior: "smooth" });
+    // });
     
     if (parentElement) {
         const imgElements = parentElement.querySelectorAll('img');

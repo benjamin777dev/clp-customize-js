@@ -1,5 +1,5 @@
 const targetElement = document.getElementById("script-container");
-// if (!targetElement) return;
+if (!targetElement) return;
 
 targetElement.innerHTML = `
     <style>
@@ -214,12 +214,13 @@ targetNextslide.innerHTML = `
         .testimonial-slider {
             position: relative;
             min-height: 250px;
+            transition: 0.5s;
         }
         
         .testimonial {
             position: absolute;
             width: 100%;
-            height: 100%;
+            // height: 100%;
             opacity: 0;
             transform: translateX(100%);
             transition: all 0.5s ease;
@@ -384,6 +385,7 @@ targetNextslide.innerHTML = `
         .availability {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
             gap: 8px;
             color: #1A1F71;
             font-size: 14px;
@@ -435,7 +437,7 @@ targetNextslide.innerHTML = `
     </style>
 
     <div class="testimonial-container">
-        <div class="testimonial-slider">
+        <div class="testimonial-slider" id="testimonialSlider">
             <div class="testimonial active">
                 <div class="rating inline-flex gap-1">
                     ${'<span class="star inline-flex"><svg height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.9893 0H0V19.9893H19.9893V0Z" fill="#00B67A"></path><path d="M13.0363 12.3284L9.99627 13.0988L14.3065 16.2429L13.0363 12.3284Z" fill="white"></path><path d="M11.6412 8.03898H16.9925L12.6823 11.1623L10.0171 13.078L5.68607 16.2013L7.33102 11.1623L3 8.03898H8.35131L9.99627 3L11.6412 8.03898Z" fill="white"></path></svg></span>'.repeat(5)}
@@ -498,7 +500,7 @@ targetNextslide.innerHTML = `
 
     <!-- Need Help section -->
     <div class="help-section">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
             <h2 class="font-semibold">Need Help?</h2>
             <div class="availability">
                 <span class="pulsating-dot"></span>
@@ -548,7 +550,14 @@ setTimeout(() => {
       testimonials.forEach((testimonial, i) => {
         testimonial.classList.remove('active');
         if (i === index) {
-          testimonial.classList.add('active');
+            const computedHeight = window.getComputedStyle(testimonial).height;
+            testimonial.classList.add('active');
+            const testimonialSliderElement = document.getElementById('testimonialSlider');
+            if (testimonialSliderElement) {
+                testimonialSliderElement.style.height = computedHeight;
+            } else {
+                console.error('testimonialSliderElement is not defined');
+            }
         }
       });
     }
@@ -566,5 +575,7 @@ setTimeout(() => {
     nextBtn.addEventListener('click', nextTestimonial);
     prevBtn.addEventListener('click', prevTestimonial);
     
-    showTestimonial(currentIndex);
+    setTimeout(() => {
+        showTestimonial(currentIndex);
+    }, 50);
 }, 5000);
