@@ -22,12 +22,15 @@ setTimeout(() => {
       h4.style.fontFamily = '"STIX Two Text Variable", Times';
       h4.style.letterSpacing = "0.05rem";
       h4.style.fontSize = "2.125rem";
-      h4.style.paddingTop = "48px";
+      // h4.style.paddingTop = "48px";
       h4.style.lineHeight = "1.15";
+      h4.style.textAlign = "center";
       h4.style.setProperty("font-weight", "400", "important");
       h4.style.setProperty("color", "#333333 ", "important");
-
+  
       h4.nextElementSibling.style.fontFamily =  '"DM Sans Variable", sans-serif';
+      h4.parentElement.style.paddingBottom = "24px";
+      h4.parentElement.style.paddingTop = "48px";
     }
   });
 
@@ -46,6 +49,7 @@ setTimeout(() => {
       textSpan.style.setProperty("color", "#333333 ", "important");
       textSpan.style.setProperty("font-weight", "400", "important");
       textSpan.parentElement.parentElement.style.borderRadius = "5px";
+      textSpan.parentElement.parentElement.style.setProperty("height", "65px", "important");
     }
   });
 
