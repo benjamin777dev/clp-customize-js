@@ -85,14 +85,14 @@ container.innerHTML = `
         }
 
         .scale-bar {
-            height: 8px;
+            height: 12px;
             background: linear-gradient(to right,
                     #4CAF50 0%,
                     #8BC34A 20%,
                     #FFEB3B 40%,
                     #FF9800 60%,
                     #F44336 80%);
-            border-radius: 4px;
+            border-radius: 12px;
             position: relative;
         }
 
@@ -260,7 +260,7 @@ function animateBMIValue(startValue, endValue, duration = 500) {
     function update(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const currentValue = (startValue + (endValue - startValue) * progress).toFixed(2);
+        const currentValue = (startValue + (endValue - startValue) * progress).toFixed(1);
         bmiValueElement.textContent = currentValue;
 
         if (progress < 1) {
@@ -321,3 +321,4 @@ document.getElementById('weight').addEventListener('input', handleInput);
 // Initialize with empty values
 
 updateBMIDisplay(0);
+animateBMIValue(30,0);
