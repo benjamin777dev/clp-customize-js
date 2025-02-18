@@ -1,8 +1,27 @@
 const container = document.getElementById("script-container");
 if (!container) return;
+
+let bannerDiv = document.getElementById("offer-banner");
+if(bannerDiv) return;
+
 container.innerHTML = `
 <div id="offer-banner"></div>
 `;
+
+
+bannerDiv = document.getElementById("offer-banner");
+bannerDiv.parentElement.style.width = "100%";
+Object.assign(bannerDiv.style, {
+  backgroundColor: "#F8F93F",
+  color: "#0E0B20",
+  padding: "10px",
+  textAlign: "center",
+  fontFamily: "DM Sans Variable, sans-serif",
+  width: "100%",
+  borderColor: "yellow",
+});
+
+bannerDiv.innerHTML = 'SPECIAL OFFER: $100 OFF YOUR FIRST MONTH <strong>(Code: FEB100)</strong>';
 
 const link = document.createElement("link");
 link.href = "https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap";
@@ -23,7 +42,7 @@ setTimeout(() => {
       h4.style.lineHeight = "1.15";
       h4.style.textAlign = "center";
       h4.style.setProperty("font-weight", "400", "important");
-      h4.style.setProperty("color", "#333333 ", "important");
+      h4.style.setProperty("color", "#333333", "important");
       h4.parentElement.style.paddingBottom = "24px";
       h4.parentElement.style.paddingTop = "48px";
     }
@@ -74,18 +93,4 @@ setTimeout(() => {
     button.style.color = "#0E0B20";
     button.style.borderColor = "yellow";
   }
-}, 10);
-
-const bannerDiv = document.getElementById("offer-banner");
-bannerDiv.parentElement.style.width = "100%";
-Object.assign(bannerDiv.style, {
-  backgroundColor: "#F8F93F",
-  color: "#0E0B20",
-  padding: "10px",
-  textAlign: "center",
-  fontFamily: "DM Sans Variable, sans-serif",
-  width: "100%",
-  borderColor: "yellow",
-});
-
-bannerDiv.innerHTML = 'SPECIAL OFFER: $100 OFF YOUR FIRST MONTH <strong>(Code: FEB100)</strong>';
+}, 1000);
