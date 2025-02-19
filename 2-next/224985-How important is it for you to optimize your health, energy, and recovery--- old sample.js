@@ -4,30 +4,47 @@ if (!container) return;
 let bannerDiv = document.getElementById("offer-banner");
 if (bannerDiv) return;
 
-container.innerHTML = `
-<div id="offer-banner"></div>
-`;
 
-const linkfont1 = document.createElement("link");
-linkfont1.href =
-  "https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap";
-linkfont1.rel = "stylesheet";
-document.head.appendChild(linkfont1);
+{
+  var addFonts = () => {
+    if (!isFontLoaded("STIX Two Text")) {
+      const linkFont1 = document.createElement("link");
+      linkFont1.href =
+        "https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap";
+      linkFont1.rel = "stylesheet";
+      document.head.appendChild(linkFont1);
+    }
 
-const link = document.createElement("link");
-link.href =
-  "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&display=swap";
-link.rel = "stylesheet";
-document.head.appendChild(link);
+    if (!isFontLoaded("DM Sans")) {
+      const linkFont2 = document.createElement("link");
+      linkFont2.href =
+        "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&display=swap";
+      linkFont2.rel = "stylesheet";
+      document.head.appendChild(linkFont2);
+    }
+  };
+
+  const isFontLoaded = (fontFamily) => {
+    return document.fonts.check(`1rem ${fontFamily}`);
+  };
+
+  addFonts();
+}
+
+container.innerHTML = `<div id="offer-banner"></div>`;
 
 bannerDiv = document.getElementById("offer-banner");
-bannerDiv.parentElement.style.width = "100%";
+
+if (bannerDiv && bannerDiv.parentElement) {
+  bannerDiv.parentElement.style.width = "100%";
+}
+
 Object.assign(bannerDiv.style, {
   backgroundColor: "#F8F93F",
   color: "#0E0B20",
   padding: "10px",
   textAlign: "center",
-  fontFamily: "DM Sans Variable, sans-serif",
+  fontFamily: '"DM Sans", sans-serif',
   width: "100%",
   borderColor: "yellow",
 });
@@ -35,41 +52,48 @@ Object.assign(bannerDiv.style, {
 bannerDiv.innerHTML =
   "SPECIAL OFFER: $100 OFF YOUR FIRST MONTH <strong>(Code: FEB100)</strong>";
 
-runUpdate = () => {
+
+  
+const runUpdate = () => {
   updateTitle();
   updateRadioSelect();
   updateBottomButton();
 };
 
-const interval = setInterval(runUpdate, 100);
+const observer = new MutationObserver(() => {
+  runUpdate();
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
+
 setTimeout(() => {
-  clearInterval(interval);
-  // runUpdate();
+  observer.disconnect();
 }, 3000);
 
-
-if (typeof updateBottomButton === "undefined") {
-  updateBottomButton = () => {
+if (typeof updateBottomButton !== "function") {
+  var updateBottomButton = function () {
     const button = document.querySelector(
       ".flex.flex-grow.justify-end.py-10 button"
     );
     if (button) {
-      button.style.outline = "2px solid transparent";
-      button.style.outlineOffset = "2px";
-      button.style.lineHeight = "1";
-      button.style.borderRadius = "2px";
-      button.style.setProperty("font-weight", "400", "important");
-      button.style.fontFamily = '"DM Sans Variable", sans-serif';
-      button.style.textTransform = "capitalize";
-      button.style.backgroundColor = "#F8F93F";
-      button.style.color = "#0E0B20";
-      button.style.borderColor = "yellow";
+      Object.assign(button.style, {
+        outline: "2px solid transparent",
+        outlineOffset: "2px",
+        lineHeight: "1",
+        borderRadius: "2px",
+        fontWeight: "400",
+        fontFamily: '"DM Sans", sans-serif',
+        textTransform: "capitalize",
+        backgroundColor: "#F8F93F",
+        color: "#0E0B20",
+        borderColor: "yellow",
+      });
     }
   };
 }
 
-if (typeof updateTitle === "undefined") {
-  updateTitle = () => {
+if (typeof updateTitle !== "function") {
+  var updateTitle = function () {
     document.querySelectorAll("h4").forEach((h4) => {
       if (
         h4.classList.contains("text-brand-heading-text") &&
@@ -77,56 +101,48 @@ if (typeof updateTitle === "undefined") {
         h4.classList.contains("text-3xl") &&
         h4.classList.contains("font-bold")
       ) {
-        h4.style.fontFamily = '"STIX Two Text Variable", Times';
-        h4.style.letterSpacing = "0.05rem";
-        h4.style.fontSize = "2.125rem";
-        h4.style.lineHeight = "1.15";
-        h4.style.textAlign = "center";
+        Object.assign(h4.style, {
+          fontFamily: '"STIX Two Text", Times',
+          letterSpacing: "0.05rem",
+          fontSize: "2.125rem",
+          lineHeight: "1.15",
+          textAlign: "center",
+        });
         h4.style.setProperty("font-weight", "400", "important");
         h4.style.setProperty("color", "#333333", "important");
-        h4.parentElement.style.paddingBottom = "24px";
-        h4.parentElement.style.paddingTop = "48px";
+
+        if (h4.parentElement) {
+          Object.assign(h4.parentElement.style, {
+            paddingBottom: "24px",
+            paddingTop: "48px",
+          });
+        }
       }
     });
   };
 }
 
-if (typeof updateRadioSelect === "undefined") {
-  updateRadioSelect = () => {
-      const radioOptions = document.querySelectorAll(
+if (typeof updateRadioSelect !== "function") {
+  var updateRadioSelect = function () {
+    const radioOptions = document.querySelectorAll(
       "[id^='headlessui-radiogroup-option-']"
     );
-    if (radioOptions) {
-      radioOptions.forEach((option) => {
-        const contentDiv = option.querySelector("div");
-        contentDiv.style.fontFamily = '"DM Sans Variable", sans-serif';
-        contentDiv.style.fontSize = "16px";
-        contentDiv.style.lineHeight = "1.4";
+    radioOptions.forEach((option) => {
+      const contentDiv = option.querySelector("div");
+      if (contentDiv) {
+        Object.assign(contentDiv.style, {
+          fontFamily: '"DM Sans", sans-serif',
+          fontSize: "16px",
+          lineHeight: "1.4",
+          color: "#333333",
+          fontWeight: "400",
+          borderRadius: "5px",
+          height: "65px",
+        });
         contentDiv.style.setProperty("color", "#333333", "important");
         contentDiv.style.setProperty("font-weight", "400", "important");
-        contentDiv.style.borderRadius = "5px";
         contentDiv.style.setProperty("height", "65px", "important");
-      });
-    }
+      }
+    });
   };
 }
-
-
-
-
- // document.querySelectorAll("button").forEach((button) => {
-    //   const textSpan = button.querySelector("span span.line-clamp-2");
-    //   if (textSpan) {
-    //     textSpan.style.fontFamily = '"DM Sans Variable", sans-serif';
-    //     textSpan.style.fontSize = "16px";
-    //     textSpan.style.lineHeight = "1.4";
-    //     textSpan.style.setProperty("color", "#333333 ", "important");
-    //     textSpan.style.setProperty("font-weight", "400", "important");
-    //     textSpan.parentElement.parentElement.style.borderRadius = "5px";
-    //     textSpan.parentElement.parentElement.style.setProperty(
-    //       "height",
-    //       "65px",
-    //       "important"
-    //     );
-    //   }
-    // });
