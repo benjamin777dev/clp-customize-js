@@ -1,8 +1,6 @@
 const container = document.getElementById("script-container");
 if (!container) return;
 
-let bannerDiv = document.getElementById("offer-banner");
-if (bannerDiv) return;
 
 
 {
@@ -31,46 +29,9 @@ if (bannerDiv) return;
   addFonts();
 }
 
-container.innerHTML = `<div id="offer-banner"></div>`;
 
-bannerDiv = document.getElementById("offer-banner");
-
-if (bannerDiv && bannerDiv.parentElement) {
-  bannerDiv.parentElement.style.width = "100%";
-}
-
-Object.assign(bannerDiv.style, {
-  backgroundColor: "#F8F93F",
-  color: "#0E0B20",
-  padding: "10px",
-  textAlign: "center",
-  fontFamily: '"DM Sans", sans-serif',
-  width: "100%",
-  borderColor: "yellow",
-});
-
-bannerDiv.innerHTML =
-  "SPECIAL OFFER: $100 OFF YOUR FIRST MONTH <strong>(Code: FEB100)</strong>";
-
-
-  
-const runUpdate = () => {
-  updateTitle();
-  updateRadioSelect();
-  updateBottomButton();
-};
-
-const observer = new MutationObserver(() => {
-  runUpdate();
-});
-
-observer.observe(document.body, { childList: true, subtree: true });
-
-setTimeout(() => {
-  observer.disconnect();
-}, 3000);
-
-if (typeof updateBottomButton !== "function") {
+{
+  if (typeof updateBottomButton !== "function") {
   var updateBottomButton = function () {
     const button = document.querySelector(
       ".flex.flex-grow.justify-end.py-10 button"
@@ -90,9 +51,9 @@ if (typeof updateBottomButton !== "function") {
       });
     }
   };
-}
+  }
 
-if (typeof updateTitle !== "function") {
+  if (typeof updateTitle !== "function") {
   var updateTitle = function () {
     document.querySelectorAll("h4").forEach((h4) => {
       if (
@@ -120,9 +81,9 @@ if (typeof updateTitle !== "function") {
       }
     });
   };
-}
+  }
 
-if (typeof updateRadioSelect !== "function") {
+  if (typeof updateRadioSelect !== "function") {
   var updateRadioSelect = function () {
     const radioOptions = document.querySelectorAll(
       "[id^='headlessui-radiogroup-option-']"
@@ -145,4 +106,49 @@ if (typeof updateRadioSelect !== "function") {
       }
     });
   };
+  }
+
+
+  const runUpdate = () => {
+  updateTitle();
+  updateRadioSelect();
+  updateBottomButton();
+  };
+
+  const observer = new MutationObserver(() => {
+  runUpdate();
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  setTimeout(() => {
+  observer.disconnect();
+  }, 3000);
+}
+
+
+{
+  let bannerDiv = document.getElementById("offer-banner");
+  if (bannerDiv) return;
+
+  container.innerHTML = `<div id="offer-banner"></div>`;
+
+  bannerDiv = document.getElementById("offer-banner");
+
+  if (bannerDiv && bannerDiv.parentElement) {
+    bannerDiv.parentElement.style.width = "100%";
+  }
+
+  Object.assign(bannerDiv.style, {
+    backgroundColor: "#F8F93F",
+    color: "#0E0B20",
+    padding: "10px",
+    textAlign: "center",
+    fontFamily: '"DM Sans", sans-serif',
+    width: "100%",
+    borderColor: "yellow",
+  });
+
+  bannerDiv.innerHTML =
+    "SPECIAL OFFER: $100 OFF YOUR FIRST MONTH <strong>(Code: FEB100)</strong>";
 }
