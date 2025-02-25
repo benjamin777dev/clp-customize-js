@@ -1,40 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+const container = document.getElementById('script-container');
+if (!container) return;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        body {
-            background-color: rgb(214, 213, 218);
-            display: flex;
-            justify-content: center;
-            padding: 0 100px;
-
-        }
-
-        .db-body {
-            /* background-color: lightblue; */
-            display: flex;
-            width: 100%;
-            flex-direction: column;
-            /* align-items: center; */
-            /* gap: 1.5rem; */
-            /* padding: 2rem 0; */
-            /* padding-top: 1rem; */
-            /* padding-right: 1rem; */
-            max-width: 640px;
-            /* flex-grow: 1; */
-        }
-    </style>
-</head>
-
-<body>
-    <div class="db-body">
-        <div id="script-container">
+container.innerHTML = `
+    <div style="padding: 2rem; max-width: 800px;">
+      
 
 
 
@@ -56,8 +25,7 @@
 
 
 
-
-
+  
             <div class="max-w-3xl mx-auto text-center">
                 <!-- Header -->
                 <div class="mb-8">
@@ -475,45 +443,14 @@
 
 
 
+    
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-        <!-- <script src="./embed.js"></script> -->
-        <!-- <script src="./2670-243174-choose medication.js"></script> -->
-        <!-- <script src="../1-2/1-2 current state.js"></script> -->
-</body>
-
-</html>
+    
+    
+    </div>
+`;
