@@ -1,130 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+const container = document.getElementById('script-container');
+if (!container) return;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        body {
-            background-color: rgb(214, 213, 218);
-            display: flex;
-            justify-content: center;
-            padding: 0 100px;
-
-        }
-
-        .db-body {
-            /* background-color: lightblue; */
-            display: flex;
-            width: 100%;
-            flex-direction: column;
-            /* align-items: center; */
-            /* gap: 1.5rem; */
-            /* padding: 2rem 0; */
-            /* padding-top: 1rem; */
-            /* padding-right: 1rem; */
-            max-width: 640px;
-            /* flex-grow: 1; */
-        }
-    </style>
-</head>
-
-<body>
-    <div class="db-body">
-        <div id="script-container">
-
-
-
-
-            <!-- add font -->
-            <style>
-                @font-face {
-                    font-family: 'Intro Black Caps';
-                    src: url('fonts/Intro Black Caps Regular.otf') format('opentype');
-                    font-weight: normal;
-                    font-style: normal;
-                }
-
-                @font-face {
-                    font-family: 'Intro Black Italic';
-                    src: url('fonts/Intro Black Italic Italic.otf') format('opentype');
-                    font-weight: normal;
-                    font-style: italic;
-                }
-
-                @font-face {
-                    font-family: 'Intro Black';
-                    src: url('fonts/Intro Black Regular.otf') format('opentype');
-                    font-weight: normal;
-                    font-style: normal;
-                }
-
-                @font-face {
-                    font-family: 'Intro Bold Alt';
-                    src: url('fonts/Intro Bold Alt Regular.otf') format('opentype');
-                    font-weight: bold;
-                    font-style: normal;
-                }
-
-                @font-face {
-                    font-family: 'Intro Bold Caps';
-                    src: url('fonts/Intro Bold Caps Regular.otf') format('opentype');
-                    font-weight: bold;
-                    font-style: normal;
-                }
-
-                @font-face {
-                    font-family: 'Intro Bold Italic';
-                    src: url('fonts/Intro Bold Italic Italic.otf') format('opentype');
-                    font-weight: bold;
-                    font-style: italic;
-                }
-
-                @font-face {
-                    font-family: 'Intro Bold';
-                    src: url('fonts/Intro Bold Regular.otf') format('opentype');
-                    font-weight: bold;
-                    font-style: normal;
-                }
-
-                @font-face {
-                    font-family: 'Intro Book Italic';
-                    src: url('fonts/Intro Book Italic Italic.otf') format('opentype');
-                    font-weight: normal;
-                    font-style: italic;
-                }
-
-                @font-face {
-                    font-family: 'Intro Book';
-                    src: url('fonts/Intro Book Regular.otf') format('opentype');
-                    font-weight: normal;
-                    font-style: normal;
-                }
-
-                @font-face {
-                    font-family: 'Intro Cond SemiBold';
-                    src: url('fonts/Intro Cond SemiBold Italic.otf') format('opentype');
-                    font-weight: 600;
-                    font-style: italic;
-                }
-
-                @font-face {
-                    font-family: 'Intro Regular Alt';
-                    src: url('fonts/Intro Regular Alt Regular.otf') format('opentype');
-                    font-weight: normal;
-                    font-style: normal;
-                }
-
-                @font-face {
-                    font-family: 'Zdingbats Medium';
-                    src: url('fonts/copyfonts.com_zdingbats_medium.ttf') format('truetype');
-                    font-weight: normal;
-                    font-style: normal;
-                }
-            </style>
+container.innerHTML = `
+    <div style="padding: 2rem; max-width: 800px;">
+      
 
 
 
@@ -141,49 +20,46 @@
 
 
 
+
+
+
+
+
+  
             <div class="max-w-3xl mx-auto text-center">
                 <!-- Header -->
                 <div class="mb-8">
-                    <h1 class="text-4xl font-bold" style="color: #009; font-family: 'Intro Bold Alt';">Your Personalized
-                    </h1>
+                    <h1 class="text-4xl font-bold" style="color: #009;">Your Personalized</h1>
                     <h2 class="text-4xl font-bold inline-block" style="color: #009;">
-                        NAD+ <span style="font-family: Intro Bold Alt;">
-                            Plan
-
-                        </span>
-                        <span class="px-3 rounded" style="background-color: #ff0; font-family: Intro Book Italic;">Is
-                            Ready!</span>
+                        NAD+ Plan <span class="px-3 rounded" style="background-color: #ff0;">Is Ready!</span>
                     </h2>
                 </div>
 
                 <!-- Message -->
-                <div class="inline-block px-3 py-1 rounded-full mb-8" style="background-color: #fffee1;">
-                    <span class="mr-2 font-bold bg-yellow-400 rounded-full px-1" style="color: #000002;">✓</span>
-                    <span style="font-family: Intro Bold Alt; color: #01296b;">
-                        Based on your quiz, you're the perfect candidate for NAD+ therapy!
-                    </span>
+                <div class="inline-block px-4 py-3 rounded-lg mb-8" style="background-color: #eee;">
+                    <span class="mr-2" style="color: #060;">✓</span>
+                    Based on your quiz, you're the perfect candidate for NAD+ therapy!
                 </div>
 
                 <!-- Second style option with gradient header -->
-                <div class="rounded-xl shadow-lg border-2 border-[#01008c]" style="background-color: #fff;">
+                <div class="rounded-2xl shadow-lg overflow-hidden" style="background-color: #fff;">
                     <div class="relative">
-                        <div class="absolute top-[-2px] left-0 right-0 h-10"
-                            style="border-radius:10px; background: linear-gradient(to right, #009, #099);">
-                        </div>
-
-                        <div class="flex flex-col md:flex-row" style="font-family: Intro Bold Alt;">
-                            <div class="flex-1 my-3 relative">
+                        <div class="absolute top-0 left-0 right-0 h-10"
+                            style="background: linear-gradient(to right, #009, #099);"></div>
+                        <div class="flex flex-col md:flex-row">
+                            <div class="flex-1 p-5 relative border-b md:border-b-0 md:border-r"
+                                style="border-color: #ccc;">
                                 <div class="uppercase font-bold text-sm tracking-wider mb-3 relative z-10"
-                                    style="color: #fff; border-right-width: 2px;">AGE</div>
-                                <div style="color: #333; border-right-width: 2px; border-color: #01008c;">31</div>
+                                    style="color: #fff;">AGE</div>
+                                <div style="color: #333;">31</div>
                             </div>
-                            
-                            <div class="flex flex-col my-3 relative">
-                                <div class="font-bold text-sm tracking-wider mb-3 relative z-10"
-                                    style="color: #fff; border-right-width: 2px;">Cellular Function</div>
-                                <div class="px-6" style="color: #333; border-right-width: 2px; border-color: #01008c;">Enhanced Mitochondrial Support</div>
+                            <div class="flex flex-col p-5 relative border-b md:border-b-0 md:border-r"
+                                style="border-color: #ccc;">
+                                <div class="uppercase font-bold text-sm tracking-wider mb-3 relative z-10"
+                                    style="color: #fff;">Cellular Function</div>
+                                <div style="color: #333;">Enhanced Mitochondrial Support</div>
                             </div>
-                            <div class="flex-1 p-3 relative">
+                            <div class="flex-1 p-5 relative">
                                 <div class="uppercase font-bold text-sm tracking-wider mb-3 relative z-10"
                                     style="color: #fff;">SEX</div>
                                 <div style="color: #333;">Female</div>
@@ -194,16 +70,16 @@
 
                 <!-- Image Section -->
                 <div class="mt-12">
-                    <img src="./img/main.jpg" alt="Example image" class="max-w-full h-auto mx-auto rounded-lg shadow-md" style="max-width: 600px;">
-                    <!-- <img src="https://picsum.photos/500/300" alt="Example image" class="max-w-full h-auto mx-auto rounded-lg shadow-md" style="max-width: 500px;"> -->
+                    <img src="https://picsum.photos/500/300" alt="Example image"
+                        class="max-w-full h-auto mx-auto rounded-lg shadow-md" style="max-width: 500px;">
                 </div>
 
                 <!-- Features Section -->
-                <div class="mt-12 p-8 rounded-xl text-xl" style="background-color: #ffd; font-family:Intro Bold Alt;">
+                <div class="mt-12 p-8 rounded-xl" style="background-color: #ffd;">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Free Overnight Shipping -->
                         <div class="flex items-center p-4 rounded-lg"
-                            style="background-color: #fff; border: 1.5px solid #009;">
+                            style="background-color: #fff; border: 1px solid #ccc;">
                             <div class="w-12 h-12 flex-shrink-0" style="background-color: #009;">
                                 <svg class="w-full h-full p-2" viewBox="0 0 24 24" fill="#fff">
                                     <path
@@ -218,7 +94,7 @@
 
                         <!-- Board-Certified Physicians -->
                         <div class="flex items-center p-4 rounded-lg"
-                            style="background-color: #fff; border: 1px solid #009;">
+                            style="background-color: #fff; border: 1px solid #ccc;">
                             <div class="w-12 h-12 flex-shrink-0" style="background-color: #009;">
                                 <svg class="w-full h-full p-2" viewBox="0 0 24 24" fill="#fff">
                                     <path
@@ -233,7 +109,7 @@
 
                         <!-- Prescribed in less than 12 Hours -->
                         <div class="flex items-center p-4 rounded-lg"
-                            style="background-color: #fff; border: 1px solid #009;">
+                            style="background-color: #fff; border: 1px solid #ccc;">
                             <div class="w-12 h-12 flex-shrink-0" style="background-color: #009;">
                                 <svg class="w-full h-full p-2" viewBox="0 0 24 24" fill="#fff">
                                     <path
@@ -248,7 +124,7 @@
 
                         <!-- FDA-Registered Pharmacies -->
                         <div class="flex items-center p-4 rounded-lg"
-                            style="background-color: #fff; border: 1px solid #009;">
+                            style="background-color: #fff; border: 1px solid #ccc;">
                             <div class="w-12 h-12 flex-shrink-0" style="background-color: #009;">
                                 <svg class="w-full h-full p-2" viewBox="0 0 24 24" fill="#fff">
                                     <path
@@ -567,45 +443,14 @@
 
 
 
+    
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-        <!-- <script src="./embed.js"></script> -->
-        <!-- <script src="./2670-243174-choose medication.js"></script> -->
-        <!-- <script src="../1-2/1-2 current state.js"></script> -->
-</body>
-
-</html>
+    
+    
+    </div>
+`;
