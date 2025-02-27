@@ -9,7 +9,8 @@
 
     <style>
         body {
-            background-color: rgb(214, 213, 218);
+            /* background-color: rgb(214, 213, 218); */
+            background-color: #fff;
             display: flex;
             justify-content: center;
             padding: 0 100px;
@@ -124,6 +125,29 @@
                     font-weight: normal;
                     font-style: normal;
                 }
+
+                @font-face {
+                    font-family: 'DM Sans';
+                    /* src: url('./Fonts/DMSans-VariableFont_opsz\,wght.ttf') format('truetype'); */
+                    src: url('https://ik.imagekit.io/fwkcsfdx5/GLP/sermoreline/Fonts/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
+                    font-weight: normal;
+                    font-style: normal;
+                }
+
+                @font-face {
+                    font-family: 'STIX Two Text';
+                    src: url('https://ik.imagekit.io/fwkcsfdx5/GLP/sermoreline/Fonts/STIXTwoText-VariableFont_wght.ttf') format('truetype');
+                    font-weight: normal;
+                    font-style: normal;
+                }
+
+
+                .text-color {
+                    color: #0E0B20;
+                }
+
+
+
             </style>
 
 
@@ -141,65 +165,65 @@
 
 
 
-            <div class="max-w-3xl mx-auto text-center">
+            <div class="max-w-3xl mx-auto text-center" style="font-family: DM Sans; font-weight: 700;">
                 <!-- Header -->
-                <div class="mb-8">
-                    <h1 class="text-4xl font-bold" style="color: #009; font-family: 'Intro Bold Alt';">Your Personalized
+                <div class="mb-4">
+                    <h1 class="text-4xl text-color" style="font-family: STIX Two Text; font-weight: 500px;">Your Personalized
                     </h1>
-                    <h2 class="text-4xl font-bold inline-block" style="color: #009;">
-                        NAD+ <span style="font-family: Intro Bold Alt;">
-                            Plan
-
+                    <h2 class="text-4xl" style="font-family: STIX Two Text;">
+                        <span style="font-weight:bolder; letter-spacing: 2px;">Sermorelin</span>
+                        <span >Plan</span>
+                        <span class="px-3 rounded" style="background-color: #ff0; font-style: italic;">
+                            Is Ready!
                         </span>
-                        <span class="px-3 rounded" style="background-color: #ff0; font-family: Intro Book Italic;">Is
-                            Ready!</span>
                     </h2>
                 </div>
 
                 <!-- Message -->
-                <div class="inline-block px-3 py-1 rounded-full mb-8" style="background-color: #fffee1;">
-                    <span class="mr-2 font-bold bg-yellow-400 rounded-full px-1" style="color: #000002;">✓</span>
-                    <span style="font-family: Intro Bold Alt; color: #01296b;">
+                <div class="inline-block px-3 py-1 rounded-full mb-4" style="background-color: #fffee1;">
+                    <span class="mr-2 font-bold bg-yellow-400 rounded-full px-[5px]" style="color: #000002;">✓</span>
+                    <span class="text-color" style="font-family: DM Sans; font-weight: 700;" >
                         Based on your quiz, you're the perfect candidate for NAD+ therapy!
                     </span>
                 </div>
 
                 <!-- Second style option with gradient header -->
-                <div class="rounded-xl shadow-lg border-2 border-[#01008c]" style="background-color: #fff;">
+                <div class="rounded-xl shadow-lg border-2 border-[#0E0B20]" style="background-color: #fff;">
                     <div class="relative">
                         <div class="absolute top-[-2px] left-0 right-0 h-10"
-                            style="border-radius:10px; background: linear-gradient(to right, #009, #099);">
+                            style="border-radius:10px; background-color: #231F33;">
                         </div>
 
-                        <div class="flex flex-col md:flex-row" style="font-family: Intro Bold Alt;">
+                        <div class="flex flex-col md:flex-row">
                             <div class="flex-1 my-3 relative">
                                 <div class="uppercase font-bold text-sm tracking-wider mb-3 relative z-10"
-                                    style="color: #fff; border-right-width: 2px;">AGE</div>
-                                <div style="color: #333; border-right-width: 2px; border-color: #01008c;">31</div>
+                                    style="color: #F8F93F; border-right-width: 2px; border-color: #F8F93F;">AGE</div>
+                                <div style="color:#0E0B20 ; border-right-width: 2px; border-color: #01008c;">31</div>
                             </div>
-                            
+
                             <div class="flex flex-col my-3 relative">
                                 <div class="font-bold text-sm tracking-wider mb-3 relative z-10"
-                                    style="color: #fff; border-right-width: 2px;">Cellular Function</div>
-                                <div class="px-6" style="color: #333; border-right-width: 2px; border-color: #01008c;">Enhanced Mitochondrial Support</div>
+                                    style="color: #F8F93F; border-right-width: 2px; border-color: #F8F93F;">Function</div>
+                                <div class="px-6" style="color: #0E0B20; border-right-width: 2px; border-color: #01008c;">
+                                    Enhanced GH Stimulation</div>
                             </div>
                             <div class="flex-1 p-3 relative">
                                 <div class="uppercase font-bold text-sm tracking-wider mb-3 relative z-10"
-                                    style="color: #fff;">SEX</div>
-                                <div style="color: #333;">Female</div>
+                                    style="color: #F8F93F;">SEX</div>
+                                <div style="color: #0E0B20;">Male</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Image Section -->
-                <div class="mt-12">
-                    <img src="./img/main.jpg" alt="Example image" class="max-w-full h-auto mx-auto rounded-lg shadow-md" style="max-width: 600px;">
+                <div>
+                    <img src="https://ik.imagekit.io/fwkcsfdx5/GLP/sermoreline/img/1-1.png" alt="Example image" class="max-w-full h-auto mx-auto rounded-lg" style="max-width: 600px;">
                     <!-- <img src="https://picsum.photos/500/300" alt="Example image" class="max-w-full h-auto mx-auto rounded-lg shadow-md" style="max-width: 500px;"> -->
                 </div>
 
                 <!-- Features Section -->
-                <div class="mt-12 p-8 rounded-xl text-xl" style="background-color: #ffd; font-family:Intro Bold Alt;">
+                <div class="p-8 rounded-xl text-xl" style="background-color: #ffd; font-family:Intro Bold Alt;">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Free Overnight Shipping -->
                         <div class="flex items-center p-4 rounded-lg"
