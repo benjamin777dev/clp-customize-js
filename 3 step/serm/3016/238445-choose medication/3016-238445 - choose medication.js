@@ -62,12 +62,6 @@ container.innerHTML = `
     
     
     
-    
-    
-    
-    
-    
-
 
             <div class="text-center" style="font-family: DM Sans;">
                 <!-- Header -->
@@ -422,7 +416,8 @@ container.innerHTML = `
                 <!-- Get Started TODAY Section -->
                 <div class="p-8">
                     <h2 class="text-5xl font-bold mb-8 text-left" style="color: #0E0B20; font-family: STIX Two Text;">
-                        Get Started <span style="background-color: #ffff00; padding: 0 8px; font-style: italic;">TODAY</span>
+                        Get Started <span
+                            style="background-color: #ffff00; padding: 0 8px; font-style: italic;">TODAY</span>
                     </h2>
                     <div class="space-y-3 text-left" style="font-family: DM Sans;">
                         <div class="flex items-center gap-4">
@@ -437,7 +432,8 @@ container.innerHTML = `
                                     </svg>
                                 </span>
                             </div>
-                            <p class="text-xl" style="color: #0E0B20; font-weight: 500;">UNLIMITED doctor support, 7 days a week
+                            <p class="text-xl" style="color: #0E0B20; font-weight: 500;">UNLIMITED doctor support, 7
+                                days a week
                             </p>
                         </div>
                         <div class="flex items-center gap-4">
@@ -452,7 +448,8 @@ container.innerHTML = `
                                     </svg>
                                 </span>
                             </div>
-                            <p class="text-xl" style="color: #0E0B20; font-weight: 500;">Prescribed & shipped within 48 HOURS
+                            <p class="text-xl" style="color: #0E0B20; font-weight: 500;">Prescribed & shipped within 48
+                                HOURS
                             </p>
                         </div>
                         <div class="flex items-center gap-4">
@@ -467,7 +464,8 @@ container.innerHTML = `
                                     </svg>
                                 </span>
                             </div>
-                            <p class="text-xl" style="color: #0E0B20; font-weight: 500;">Cost of medication INCLUDED in the
+                            <p class="text-xl" style="color: #0E0B20; font-weight: 500;">Cost of medication INCLUDED in
+                                the
                                 price</p>
                         </div>
                         <div class="flex items-center gap-4">
@@ -482,7 +480,8 @@ container.innerHTML = `
                                     </svg>
                                 </span>
                             </div>
-                            <p class="text-xl" style="color: #0E0B20; font-weight: 500;">No hidden fees—what you see is what you
+                            <p class="text-xl" style="color: #0E0B20; font-weight: 500;">No hidden fees—what you see is
+                                what you
                                 pay</p>
                         </div>
                         <div class="flex items-center gap-4">
@@ -497,17 +496,47 @@ container.innerHTML = `
                                     </svg>
                                 </span>
                             </div>
-                            <p class="text-xl" style="color: #0E0B20; font-weight: 500;">No contracts, cancel ANYTIME</p>
+                            <p class="text-xl" style="color: #0E0B20; font-weight: 500;">No contracts, cancel ANYTIME
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sermorelin Plan Section -->
+                <div class="p-0 rounded-xl overflow-hidden">
+                    <div class="flex flex-col md:flex-row items-center border-4 relative"
+                        style="border-color: #ffff00; border-radius: 0.75rem;">
+                        <div class="w-full md:w-1/3 px-4 flex justify-center items-center">
+                            <div class="absolute left-0 top-0 h-full w-28" style="background-color: #ffff00;"></div>
+                            <div class="">
+                                <img src="https://ik.imagekit.io/fwkcsfdx5/GLP/sermoreline/img/3.png" alt="Sermorelin Vial"
+                                    class="relative max-w-[150px] mx-auto">
+                            </div>
+                        </div>
+                        <div class="w-full md:w-2/3 p-2 text-left -ml-4">
+                            <h2 class="text-5xl font-bold mb-2" style="color: #0E0B20; font-family: STIX Two Text;">Sermorelin Plan</h2>
+                            <p class="text-2xl mb-4 font-semibold" style="color: #0E0B20; font-family: DM Sans;">Peptide that supports natural growth hormone
+                                production</p>
+                            <div class="flex items-center gap-3 mb-4" style="font-family: DM Sans; color: #0E0B20;">
+                                <span class="w-4 h-4 rounded-full bg-green-500 flex-shrink-0"></span>
+                                <span class="mr-3 font-bold">In-Stock</span>
+                                <span class="px-4 py-2 rounded-full font-bold"
+                                    style="background-color: #ffff00;">Most Popular
+                                    Peptide</span>
+                            </div>
+                            <div class="text-5xl font-bold" style="color: #0E0B20; font-family: STIX Two Text;">$249</div>
                         </div>
                     </div>
                 </div>
 
 
+
+                <div class="h-40"></div>
+
+
+
+
             </div>
-
-
-
-
 
 
 
