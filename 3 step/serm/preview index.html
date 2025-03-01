@@ -58,6 +58,76 @@
                 .text-color {
                     color: #0E0B20;
                 }
+
+
+
+
+                .landing-cta-button {
+                    width: 100%;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    /* background-color: rgb(6, 32, 136); */
+                    /* color: rgb(255, 255, 255); */
+                    /* border: 2px solid rgb(6, 32, 136); */
+                    /* border-radius: 6px; */
+                    box-sizing: border-box;
+                    cursor: pointer;
+                    /* font-family: Figtree, "Figtree Fallback"; */
+                    /* font-size: 14px; */
+                    /* font-weight: 600; */
+                    /* height: 56px; */
+                    /* line-height: 20px; */
+                    /* margin-bottom: 2rem; */
+                    overflow: hidden;
+                    /* padding: 20px 40px; */
+                    position: relative;
+                    text-align: center;
+                    text-decoration: none;
+                    transition:
+                        color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                        background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                        border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                        text-decoration-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                        fill 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                        stroke 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+                    -webkit-font-smoothing: antialiased;
+                    -webkit-tap-highlight-color: transparent;
+                }
+
+                .landing-cta-button:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0) 30%, rgb(188, 189, 132) 50%, rgba(255, 255, 255, 0) 70%);
+                    background-size: 200% 200%;
+                    opacity: 0.5;
+                    transform: translateZ(0);
+                    /* Improves animation performance */
+                    animation: shine 4s infinite ease-out;
+                    box-sizing: border-box;
+                }
+
+                @keyframes shine {
+                    0% {
+                        content: '';
+                        background-position: 200% 0;
+                    }
+
+                    100% {
+                        content: '';
+                        background-position: -200% 0;
+                    }
+                }
+
+                .landing-cta-button:hover {
+                    background-color: #080d5a;
+                }
             </style>
 
 
@@ -260,7 +330,8 @@
 
                 <!-- Get Started Button -->
                 <div class="mt-12">
-                    <button class="w-full py-4 px-6 rounded-lg text-white text-xl flex items-center justify-center"
+                    <button
+                        class="landing-cta-button w-full py-4 px-6 rounded-lg text-white text-xl flex items-center justify-center"
                         style="background-color: #231F33; font-family: STIX Two Text; color: #F8F93F; font-weight: 600;">
                         WOOHOO! I'm Ready to Get Started
                         <span class="ml-4 -mt-1">
@@ -542,7 +613,8 @@
 
                 <!-- Get Started Button -->
                 <div class="mt-4">
-                    <button class="w-full py-4 px-6 rounded-lg text-white text-2xl flex items-center justify-center"
+                    <button
+                        class="landing-cta-button w-full py-4 px-6 rounded-lg text-white text-2xl flex items-center justify-center"
                         style="background-color: #231F33; font-family: STIX Two Text; color: #F8F93F; font-weight: 600;">
                         Proceed To Checkout
                         <span>
@@ -554,6 +626,22 @@
                         </span>
                     </button>
                 </div>
+
+
+
+                <!-- time counter -->
+                <div>
+                    <p class="text-base my-3 font-semibold" style="color: #0E0B20; font-family: DM Sans;">Peptide
+                        Your approval is reserved for 13:59 </p>
+                </div>
+
+
+
+
+
+
+
+
 
                 <div class="h-40"></div>
 
