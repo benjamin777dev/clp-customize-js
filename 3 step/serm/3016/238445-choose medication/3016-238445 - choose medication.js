@@ -20,7 +20,6 @@ container.innerHTML = `
 
 
 
-
      <!-- add font -->
             <style>
                 @font-face {
@@ -107,21 +106,58 @@ container.innerHTML = `
                     }
                 }
 
-                .landing-cta-button:hover {
-                    background-color: #080d5a;
+
+                .pulsating-dot {
+                    display: block;
+                    width: 12px;
+                    /* Size of the dot */
+                    height: 12px;
+                    float: left;
+                    top: 2px;
+                    margin-right: 5px;
+                    background-color: #00c389;
+                    /* Green color */
+                    border-radius: 50%;
+                    position: relative;
+                    /* Necessary for positioning the pseudo-element */
+
+                }
+
+                .pulsating-dot::Before {
+                    content: '';
+                    /* Required for pseudo-elements to render */
+                    position: absolute;
+                    /* Position relative to .pulsating-dot */
+                    top: 0;
+                    left: 0;
+                    width: 12px;
+                    /* Same size as the dot */
+                    height: 12px;
+                    background-color: #00c389;
+                    /* Green color */
+                    border-radius: 50%;
+                    animation: pulsate 1s infinite ease-in-out;
+                    opacity: 0.6;
+                    /* Optional: Slight transparency for better effect */
+                }
+
+                @keyframes pulsate {
+                    0% {
+                        transform: scale(1);
+                        opacity: 0.9;
+                    }
+
+                    50% {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+
+                    100% {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
                 }
             </style>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -324,7 +360,7 @@ container.innerHTML = `
 
                 <!-- Get Started Button -->
                 <div class="mt-12">
-                    <button
+                    <button id="scrollButton"
                         class="landing-cta-button w-full py-4 px-6 rounded-lg text-white text-xl flex items-center justify-center"
                         style="background-color: #231F33; font-family: STIX Two Text; color: #F8F93F; font-weight: 600;">
                         WOOHOO! I'm Ready to Get Started
@@ -487,7 +523,7 @@ container.innerHTML = `
                 </div>
 
                 <!-- Get Started TODAY Section -->
-                <div class="p-8">
+                <div class="p-8" id="scrollTargetPosition">
                     <h2 class="text-5xl font-bold mb-8 text-left" style="color: #0E0B20; font-family: STIX Two Text;">
                         Get Started <span
                             style="background-color: #ffff00; padding: 0 8px; font-style: italic;">TODAY</span>
@@ -593,7 +629,7 @@ container.innerHTML = `
                                 that supports natural growth hormone
                                 production</p>
                             <div class="flex items-center gap-3 mb-4" style="font-family: DM Sans; color: #0E0B20;">
-                                <span class="w-4 h-4 rounded-full bg-green-500 flex-shrink-0"></span>
+                                <span class="w-4 h-4 rounded-full bg-green-500 flex-shrink-0 pulsating-dot"></span>
                                 <span class="mr-3 font-bold">In-Stock</span>
                                 <span class="px-4 py-2 rounded-full font-bold" style="background-color: #ffff00;">Most
                                     Popular
@@ -640,7 +676,7 @@ container.innerHTML = `
                         </h2>
                     </div>
 
-                    <div class="" style="color: #0E0B20;">
+                    <div class="">
                         <div class="py-4 rounded-lg">
                             <h3 class="text-2xl font-bold text-center mb-2"
                                 style="background-color: #FFFEE1; font-family: DM Sans;">How soon
@@ -683,7 +719,8 @@ container.innerHTML = `
 
 
                 <!-- footer -->
-                <div class="flex flex-col py-3" style="background-color: #ffff00; font-size: 10px; line-height: 1;">
+                <div class="flex flex-col py-3"
+                    style="background-color: #ffff00; font-size: 10px; line-height: 1; color: #0E0B20;">
                     <span>
                         *These are unsolicited comments from users on social media and online forums. Individual
                     </span>
@@ -715,9 +752,13 @@ container.innerHTML = `
 
 
 
-
-
     
     
     </div>
 `;
+
+
+const targetPostionElement = document.getElementById('scrollTargetPosition');
+document.getElementById("scrollButton").addEventListener("click", function () {
+    targetPostionElement.scrollIntoView({ behavior: "smooth" });
+});
