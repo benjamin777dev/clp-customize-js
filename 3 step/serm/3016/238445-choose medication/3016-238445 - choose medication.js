@@ -113,9 +113,9 @@ container.innerHTML = `
                     /* Size of the dot */
                     height: 12px;
                     float: left;
-                    top: 2px;
+                    /* top: 2px; */
                     margin-right: 5px;
-                    background-color: #00c389;
+                    background-color: #45FF00;
                     /* Green color */
                     border-radius: 50%;
                     position: relative;
@@ -133,7 +133,7 @@ container.innerHTML = `
                     width: 12px;
                     /* Same size as the dot */
                     height: 12px;
-                    background-color: #00c389;
+                    background-color: #45FF00;
                     /* Green color */
                     border-radius: 50%;
                     animation: pulsate 1s infinite ease-in-out;
@@ -158,8 +158,6 @@ container.innerHTML = `
                     }
                 }
             </style>
-
-
 
 
 
@@ -612,7 +610,7 @@ container.innerHTML = `
                 </div>
 
                 <!-- Sermorelin Plan Section -->
-                <div class="p-0 rounded-xl overflow-hidden">
+                <div id="sermorelinPlan" class="p-0 rounded-xl overflow-hidden cursor-pointer hover:shadow-2xl">
                     <div class="flex flex-col md:flex-row items-center border-4 relative"
                         style="border-color: #ffff00; border-radius: 0.75rem;">
                         <div class="w-full md:w-1/3 px-4 flex justify-center items-center">
@@ -643,7 +641,7 @@ container.innerHTML = `
 
                 <!-- Get Started Button -->
                 <div class="mt-4">
-                    <button
+                    <button id="checkoutButton"
                         class="landing-cta-button w-full py-4 px-6 rounded-lg text-white text-2xl flex items-center justify-center"
                         style="background-color: #231F33; font-family: STIX Two Text; color: #F8F93F; font-weight: 600;">
                         Proceed To Checkout
@@ -661,7 +659,7 @@ container.innerHTML = `
 
                 <!-- time counter -->
                 <div>
-                    <p class="text-base my-3 font-semibold" style="color: #0E0B20; font-family: DM Sans;">Peptide
+                    <p id="downtimer" class="text-base my-3 font-semibold" style="color: #0E0B20; font-family: DM Sans;">Peptide
                         Your approval is reserved for 13:59 </p>
                 </div>
 
@@ -676,7 +674,7 @@ container.innerHTML = `
                         </h2>
                     </div>
 
-                    <div class="">
+                    <div class="" style="color: #0E0B20;">
                         <div class="py-4 rounded-lg">
                             <h3 class="text-2xl font-bold text-center mb-2"
                                 style="background-color: #FFFEE1; font-family: DM Sans;">How soon
@@ -748,17 +746,83 @@ container.innerHTML = `
 
 
 
-
-
-
-
     
     
     </div>
 `;
 
-
 const targetPostionElement = document.getElementById('scrollTargetPosition');
 document.getElementById("scrollButton").addEventListener("click", function () {
     targetPostionElement.scrollIntoView({ behavior: "smooth" });
 });
+
+const sermorelinPlanBtn = document.getElementById('sermorelinPlan');
+const checkoutButton = document.getElementById('checkoutButton');
+
+
+sermorelinPlanBtn.addEventListener('click', function () {
+    const button = document.querySelector('[class="flex w-full flex-col gap-4 rounded-2xl px-5 py-4 bg-[--selected-background-color] ring-2 ring-[--selected-border-color]"]');
+    console.log(button);
+})
+
+
+checkoutButton.addEventListener('click', function () {
+    document.querySelectorAll("button").forEach(button => {
+        if (button.innerText.trim() === "Continue") {
+            console.log(button)
+        }
+    });
+})
+
+const hiddenDefaultElement = () => {
+    // const button = document.querySelector('.flex.w-full.flex-col.gap-4.rounded-2xl.px-5.py-4.bg-\\[--selected-background-color\\].ring-2.ring-\\[--selected-border-color\\]');
+    
+    // if (button) {
+    //     button.parentElement.style.display = "none";
+    // }
+
+    document.querySelectorAll("button").forEach(btn => {
+        if (btn.innerText.trim() === "Continue") {
+            btn.parentElement.parentElement.parentElement.style.display = "none";
+        }
+    });
+};
+
+
+setTimeout(() => {
+    hiddenDefaultElement();
+}, 1000);
+
+
+function startCountdown() {
+    const countdownElement = document.getElementById("downtimer")
+    if (!countdownElement) {
+        console.error("Countdown element not found!");
+        return;
+    }
+
+    let totalSeconds = 15 * 60; // 15 minutes in seconds
+
+    function updateTimer() {
+        let minutes = Math.floor(totalSeconds / 60);
+        let seconds = totalSeconds % 60;
+
+        let formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        countdownElement.innerHTML = `Peptide Your approval is reserved for ${formattedTime}`;
+
+        if (totalSeconds > 0) {
+            totalSeconds--;
+            setTimeout(updateTimer, 1000);
+        } else {
+            countdownElement.innerHTML = "Peptide Your approval time has expired";
+        }
+    }
+
+    updateTimer();
+}
+
+startCountdown();
+
+
+
