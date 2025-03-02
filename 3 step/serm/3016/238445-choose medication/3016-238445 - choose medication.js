@@ -1,6 +1,9 @@
 const container = document.getElementById('script-container');
 if (!container) return;
 
+
+
+
 container.innerHTML = `
     <div style="padding: 1rem;">
       
@@ -247,7 +250,7 @@ container.innerHTML = `
                             </div>
                             <div class="ml-4 text-left tracking-tight">
                                 <p class="text-lg leading-[1.2]">FREE overnight shipping to</p>
-                                <p class="text-lg leading-[1.2]">[State]</p>
+                                <p class="text-lg leading-[1.2]" id="region">[State]</p>
                             </div>
                         </div>
 
@@ -801,12 +804,11 @@ function startCountdown() {
         return;
     }
 
-    let totalSeconds = 15 * 60; // 15 minutes in seconds
+    let totalSeconds = 15 * 60;
 
     function updateTimer() {
         let minutes = Math.floor(totalSeconds / 60);
         let seconds = totalSeconds % 60;
-
         let formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
         countdownElement.innerHTML = `Peptide Your approval is reserved for ${formattedTime}`;
@@ -818,11 +820,16 @@ function startCountdown() {
             countdownElement.innerHTML = "Peptide Your approval time has expired";
         }
     }
-
     updateTimer();
 }
 
 startCountdown();
 
 
-
+fetch('https://ipinfo.io/json')
+.then(response => response.json())
+.then(data => {
+    document.getElementById('region').textContent = data.region;
+    console.log(data.region)
+})
+.catch(error => console.error('Error fetching region:', error));
