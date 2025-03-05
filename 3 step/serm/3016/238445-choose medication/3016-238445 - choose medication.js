@@ -280,7 +280,7 @@ container.innerHTML = `
                                         overnight shipping to
                                     </span>
                                 </p>
-                                <p class="text-lg leading-[1.2]">[State]</p>
+                                <p class="text-lg leading-[1.2]" id="region">[State]</p>
                             </div>
                         </div>
 
