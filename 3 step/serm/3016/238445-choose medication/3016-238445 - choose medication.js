@@ -681,13 +681,13 @@ container.innerHTML = `
                         class="landing-cta-button w-full py-4 px-6 rounded-lg text-white text-2xl flex items-center justify-center"
                         style="background-color: #231F33; font-family: STIX Two Text; color: #F8F93F; font-weight: 600;">
                         Proceed To Checkout
-                        <span>
-                            <svg width="140" height="2" viewBox="0 0 175 4" fill="none"
+                        <span class="flex justify-center items-center" >
+                            <svg style="margin-right:-39px" width="140" height="2" viewBox="0 0 175 4" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.66803 1.84082H175" stroke="#F8F93F" stroke-width="3"
                                     stroke-miterlimit="10" />
                             </svg>
-                        </span>
+                        >
                     </button>
                 </div>
 
@@ -696,7 +696,7 @@ container.innerHTML = `
                 <!-- time counter -->
                 <div>
                     <p id="downtimer" class="text-base my-3 font-semibold"
-                        style="color: #0E0B20; font-family: DM Sans;">Peptide
+                        style="color: #0E0B20; font-family: DM Sans;">
                         Your approval is reserved for 13:59 </p>
                 </div>
 
@@ -826,7 +826,7 @@ const hiddenDefaultElement = () => {
 
     document.querySelectorAll("button").forEach(btn => {
         if (btn.innerText.trim() === "Continue") {
-            btn.parentElement.parentElement.parentElement.style.display = "none";
+            // btn.parentElement.parentElement.parentElement.style.display = "none";
         }
     });
 };
@@ -851,7 +851,7 @@ function startCountdown() {
         let seconds = totalSeconds % 60;
         let formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
-        countdownElement.innerHTML = `Peptide Your approval is reserved for ${formattedTime}`;
+        countdownElement.innerHTML = `Your approval is reserved for ${formattedTime}`;
 
         if (totalSeconds > 0) {
             totalSeconds--;
