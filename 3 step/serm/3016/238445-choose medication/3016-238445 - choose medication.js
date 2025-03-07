@@ -9,21 +9,7 @@ const gender = userInfo.gender || "Not set";
 container.innerHTML = `
     <div style="padding: 1rem;">
       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
      <!-- add font -->
             <style>
@@ -798,14 +784,14 @@ const checkoutButton = document.getElementById('checkoutButton');
 
 sermorelinPlanBtn.addEventListener('click', function () {
     const button = document.querySelector('[class="flex w-full flex-col gap-4 rounded-2xl px-5 py-4 bg-[--selected-background-color] ring-2 ring-[--selected-border-color]"]');
-    console.log(button);
+    // console.log(button);
 })
 
 
 checkoutButton.addEventListener('click', function () {
     document.querySelectorAll("button").forEach(button => {
         if (button.innerText.trim() === "Continue") {
-            console.log(button)
+            // console.log(button)
         }
     });
 })
@@ -909,24 +895,27 @@ function getDefaultButtonData() {
         });
     });
 
-    console.log('extractedData', extractedData)
+    // console.log('extractedData', extractedData)
     return extractedData;
 }
 
-// Function to generate product cards dynamically
+
 function generateProductCards() {
     const planContainer = document.getElementById("sermorelinePlanSection");
     const products = getDefaultButtonData(); // Get extracted data
-
+    
+    planContainer.innerHTML = "";
     products.forEach((product) => {
         if (!product.title || !product.price) return; // Skip if data is incomplete
 
         // Create card element
         const card = document.createElement("div");
-        card.classList.add("p-0", "rounded-xl", "overflow-hidden", "cursor-pointer", "hover:shadow-2xl");
-        card.innerHTML = `
+        card.classList.add(
+            "p-0", "rounded-xl", "overflow-hidden", "cursor-pointer", "hover:shadow-2xl", "transition-shadow", "duration-300"
+        );
 
-            <div class="p-0 rounded-xl overflow-hidden cursor-pointer hover:shadow-2xl">
+        card.innerHTML = `
+            <div class="p-0 rounded-xl overflow-hidden cursor-pointer">
                 <div class="flex flex-col md:flex-row items-center border-4 relative"
                     style="border-color: #F8F93F; border-radius: 0.75rem;">
                     <div class="w-full md:w-1/3 px-4 flex justify-center items-center">
@@ -946,8 +935,7 @@ function generateProductCards() {
                             <span class="w-4 h-4 rounded-full bg-green-500 flex-shrink-0 pulsating-dot"></span>
                             <span class="mr-3 font-bold">In-Stock</span>
                             <span class="px-4 py-2 rounded-full font-bold" style="background-color: #F8F93F;">Most
-                                Popular
-                                Peptide</span>
+                                Popular Peptide</span>
                         </div>
                         <div class="text-5xl font-bold" style="color: #0E0B20; font-family: STIX Two Text;">$${product.price}
                         </div>
@@ -956,23 +944,21 @@ function generateProductCards() {
             </div>
         `;
 
-        // Add click event listener to trigger the corresponding button
         card.addEventListener("click", () => {
-            product.buttonElement.focus(); // Focus on the original button
-            product.buttonElement.click(); // Simulate a click event
+            // Remove shadow from all cards
+            document.querySelectorAll(".selected-product").forEach((el) => {
+                el.classList.remove("shadow-xl", "selected-product", "bg-gray-100");
+            });
+
+            card.classList.add("shadow-xl", "selected-product", "bg-gray-100");
+
+            product.buttonElement.focus();
+            product.buttonElement.click();
         });
 
-        // Append the card to the container
         planContainer.appendChild(card);
     });
 }
-
-// Run the function after DOM loads
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     setTimeout(generateProductCards, 500);
-// });
 
 setTimeout(() => {
     generateProductCards()
