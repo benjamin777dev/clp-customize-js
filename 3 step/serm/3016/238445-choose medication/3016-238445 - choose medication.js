@@ -153,11 +153,6 @@ container.innerHTML = `
 
 
 
-
-
-
-
-
 <div class="text-center" style="font-family: DM Sans;">
                 <!-- Header -->
                 <div class="mb-4">
@@ -244,13 +239,8 @@ container.innerHTML = `
                             <div class="ml-4 text-left tracking-tight">
                                 <p class="text-lg leading-[1.2]">
                                     <span class="relative">
-                                        <span class="absolute h-full -mx-3">
-                                            <svg width="full" height="full" viewBox="0 0 109 31" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path opacity="0.7"
-                                                    d="M20.557 29.415C17.884 26.582 2.32599 31.707 0.951986 30.915C-0.111014 29.927 -0.270004 10.2889 0.405996 7.29694C0.646996 6.23294 1.006 6.02492 1.906 6.39692C2.99 6.94592 16.392 4.4349 20.821 3.6789C21.09 4.2689 21.668 2.17895 21.842 2.90595C22.168 3.98595 52.43 1.14091 53.281 1.09491C54.76 1.01391 53.607 2.204 55.342 1.758C59.042 0.808999 67.136 1.97294 69.942 1.02594C72.2 0.262944 72.68 0.250973 74.837 1.05597C76.72 1.75597 88.743 1.75588 90.143 0.538883C90.481 0.192883 90.729 0.351883 90.716 0.788883C90.716 0.833883 94.808 1.46296 94.84 1.46796C96.2504 1.61935 97.6387 1.93175 98.978 2.39899C99.016 2.84199 99.26 3.06789 99.51 2.79889C99.946 2.33689 108.81 1.85294 108.885 3.14594C109.104 6.81894 107.085 22.0459 105.923 25.6719C104.696 29.5229 99.449 24.3209 94.811 26.2569C71.378 24.1819 74.463 24.6669 69.519 26.0939C69.011 24.7599 67.064 27.9289 65.854 25.5939C65.361 24.6429 61.807 24.4189 61.019 25.3609C60.686 25.7609 55.97 25.356 51.108 25.305C46.246 25.254 41.237 25.574 40.354 26.889C36.6 24.624 22.422 28.983 20.557 29.415Z"
-                                                    fill="#FEEF38" />
-                                            </svg>
+                                        <span class="absolute h-full" style="margin-left: -12px; margin-right: -12px;">
+                                            <img class="w-full" src="https://ik.imagekit.io/fwkcsfdx5/GLP/sermoreline/img/Path%2016.svg?updatedAt=1741526557674">
                                         </span>
                                         <span class="relative">
                                             FREE
@@ -281,13 +271,9 @@ container.innerHTML = `
                                 <p class="text-lg leading-[1.2]">Board-
                                     <span class="relative">
                                         <span class="absolute h-full">
-                                            <svg width="full" height="full" viewBox="0 0 156 44" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path opacity="0.7"
-                                                    d="M30.213 41.7701C26.406 37.7851 4.25203 44.994 2.29503 43.882C0.78203 42.493 0.55493 14.866 1.51793 10.657C1.86093 9.15703 2.36893 8.86806 3.64793 9.38506C5.19194 10.1581 24.276 6.62509 30.582 5.56109C30.965 6.39209 31.789 3.44805 32.036 4.47405C32.501 5.99405 75.5919 1.99108 76.8039 1.92608C78.9099 1.81308 77.268 3.48704 79.74 2.86004C85.005 1.52404 96.5329 3.16003 100.523 1.82903C103.738 0.75603 104.423 0.740022 107.493 1.87102C110.175 2.86002 127.293 2.86007 129.293 1.14507C129.774 0.65807 130.126 0.881999 130.108 1.497C130.108 1.559 135.935 2.4441 135.981 2.4511C138.92 2.9311 141.852 3.52301 141.873 3.76201C141.927 4.38401 142.273 4.70205 142.631 4.32805C143.251 3.67805 155.871 2.99709 155.981 4.81609C156.293 9.98309 153.41 31.3981 151.763 36.5041C150.015 41.9221 142.543 34.6041 135.94 37.3271C102.572 34.4081 106.964 35.091 99.925 37.099C99.201 35.222 96.43 39.6801 94.706 36.3991C94.006 35.0611 88.943 34.745 87.821 36.07C87.347 36.63 80.632 36.064 73.708 35.992C66.784 35.92 59.653 36.371 58.395 38.22C53.054 35.03 32.868 41.1631 30.213 41.7701Z"
-                                                    fill="#FEEF38" />
-                                            </svg>
+                                            <img class="w-full" src="https://ik.imagekit.io/fwkcsfdx5/GLP/sermoreline/img/Path%2015.svg?updatedAt=1741526999975">
                                         </span>
+                                       
                                         <span class="relative">
                                             Certified
                                         </span>
@@ -653,10 +639,21 @@ container.innerHTML = `
                         </div>
                     </div>
                 </div>
+            </div>
+    </div>
+`;
 
-                <!-- Get Started Button -->
+
+
+
+
+
+
+
+const testimonialContainer = `
+    <!-- Get Started Button -->
                 <div class="mt-4">
-                    <button id="checkoutButton"
+                    <div id="checkoutButton"
                         class="landing-cta-button w-full py-4 px-6 rounded-lg text-white text-2xl flex items-center justify-center"
                         style="background-color: #231F33; font-family: STIX Two Text; color: #F8F93F; font-weight: 600;">
                         Proceed To Checkout
@@ -667,14 +664,14 @@ container.innerHTML = `
                                     stroke-miterlimit="10" />
                             </svg>
                         >
-                    </button>
+                    </div>
                 </div>
 
 
 
                 <!-- time counter -->
                 <div>
-                    <p id="downtimer" class="text-base my-3 font-semibold"
+                    <p id="downtimer" class="text-base my-3 font-semibold text-center"
                         style="color: #0E0B20; font-family: DM Sans;">
                         Your approval is reserved for 13:59 </p>
                 </div>
@@ -737,7 +734,7 @@ container.innerHTML = `
 
 
                 <!-- footer -->
-                <div class="flex flex-col py-3"
+                <div class="flex flex-col py-3 text-center"
                     style="background-color: #F8F93F; font-size: 10px; line-height: 1; color: #0E0B20;">
                     <span>
                         *These are unsolicited comments from users on social media and online forums. Individual
@@ -746,7 +743,42 @@ container.innerHTML = `
                         experiences may vary, and results are not guaranteed.
                     </span>
                 </div>
-            </div>
+`
+
+
+
+// Add CSS for enhancements
+const style = document.createElement('style');
+style.innerHTML = `
+        .active-radio {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            float: left;
+            border-right:1px solid #E1E5EC;
+            width: 120px;
+            height: 100%;
+        }
+
+        .active-radio > span{
+            display: inline-block; 
+            border-radius: 50%; 
+            width: 20px; 
+            height: 20px; 
+            border: 2px solid #1A1F71
+        }
+
+        .active-radio > .active{
+            background-color: #FFB400;
+            border-color: #fff;
+        }
+    `;
+document.head.appendChild(style);
 
 
 
@@ -763,15 +795,6 @@ container.innerHTML = `
 
 
 
-
-
-
-
-
-    
-    
-    </div>
-`;
 
 const targetPostionElement = document.getElementById('scrollTargetPosition');
 document.getElementById("scrollButton").addEventListener("click", function () {
@@ -788,13 +811,15 @@ sermorelinPlanBtn.addEventListener('click', function () {
 })
 
 
-checkoutButton.addEventListener('click', function () {
-    document.querySelectorAll("button").forEach(button => {
-        if (button.innerText.trim() === "Continue") {
-            // console.log(button)
-        }
-    });
-})
+if(checkoutButton){
+    checkoutButton.addEventListener('click', function () {
+        document.querySelectorAll("button").forEach(button => {
+            if (button.innerText.trim() === "Continue") {
+                // console.log(button)
+            }
+        });
+    })
+}
 
 const hiddenDefaultElement = () => {
     // const button = document.querySelector('.flex.w-full.flex-col.gap-4.rounded-2xl.px-5.py-4.bg-\\[--selected-background-color\\].ring-2.ring-\\[--selected-border-color\\]');
@@ -805,7 +830,8 @@ const hiddenDefaultElement = () => {
 
     document.querySelectorAll("button").forEach(btn => {
         if (btn.innerText.trim() === "Continue") {
-            btn.parentElement.parentElement.parentElement.style.display = "none";
+            // btn.parentElement.parentElement.parentElement.style.display = "none";
+            btn.parentElement.parentElement.style.display = "none";
         }
     });
 };
@@ -856,110 +882,161 @@ fetch('https://ipinfo.io/json')
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Function to extract data from existing buttons
-function getDefaultButtonData() {
-    let extractedData = [];
-
-    document.querySelectorAll('.flex.flex-wrap button').forEach((button, index) => {
-        const title = button.querySelector('.font-brand-header')?.innerText.trim();
-        const volumeInfo = button.querySelector('.font-brand-body')?.innerText.trim();
-        const priceText = button.querySelector('h1.text-xs.font-bold')?.innerText.trim() || null;
-        const price = priceText ? parseFloat(priceText.replace(/[^0-9.]/g, "")) : null;
-        const oldPrice = button.querySelector('h1.line-through')?.innerText.trim() || null;
-        const imageSrc = button.querySelector('img')?.src;
-
-        extractedData.push({
-            id: `btn-${index}`, // Assign a unique ID to match with the card
-            title,
-            volumeInfo,
-            price,
-            oldPrice,
-            imageSrc,
-            buttonElement: button, // Store button reference for later click event
-        });
-    });
-
-    // console.log('extractedData', extractedData)
-    return extractedData;
-}
-
-
-function generateProductCards() {
-    const planContainer = document.getElementById("sermorelinePlanSection");
-    const products = getDefaultButtonData(); // Get extracted data
+const updateRadioButton = () => {
+    const parentElement = document.querySelector('.flex.flex-wrap.justify-center.gap-2');
+    console.log('parentElement', parentElement)
     
-    planContainer.innerHTML = "";
-    products.forEach((product) => {
-        if (!product.title || !product.price) return; // Skip if data is incomplete
-
-        // Create card element
-        const card = document.createElement("div");
-        card.classList.add(
-            "p-0", "rounded-xl", "overflow-hidden", "cursor-pointer", "hover:shadow-2xl", "transition-shadow", "duration-300"
-        );
-
-        card.innerHTML = `
-            <div class="p-0 rounded-xl overflow-hidden cursor-pointer">
-                <div class="flex flex-col md:flex-row items-center border-4 relative"
-                    style="border-color: #F8F93F; border-radius: 0.75rem;">
-                    <div class="w-full md:w-1/3 px-4 flex justify-center items-center">
-                        <div class="absolute left-0 top-0 h-full w-28" style="background-color: #F8F93F;"></div>
-                        <div class="">
-                            <img src="https://ik.imagekit.io/fwkcsfdx5/GLP/sermoreline/img/3.png"
-                                alt="Sermorelin Vial" class="relative max-w-[150px] mx-auto">
-                        </div>
-                    </div>
-                    <div class="w-full md:w-2/3 p-2 text-left -ml-4">
-                        <h2 class="text-5xl font-bold mb-2" style="color: #0E0B20; font-family: STIX Two Text;">
-                            Sermorelin Plan</h2>
-                        <p class="text-2xl mb-4 font-semibold" style="color: #0E0B20; font-family: DM Sans;">Peptide
-                            that supports natural growth hormone
-                            production</p>
-                        <div class="flex items-center gap-3 mb-4" style="font-family: DM Sans; color: #0E0B20;">
-                            <span class="w-4 h-4 rounded-full bg-green-500 flex-shrink-0 pulsating-dot"></span>
-                            <span class="mr-3 font-bold">In-Stock</span>
-                            <span class="px-4 py-2 rounded-full font-bold" style="background-color: #F8F93F;">Most
-                                Popular Peptide</span>
-                        </div>
-                        <div class="text-5xl font-bold" style="color: #0E0B20; font-family: STIX Two Text;">$${product.price}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        card.addEventListener("click", () => {
-            // Remove shadow from all cards
-            document.querySelectorAll(".selected-product").forEach((el) => {
-                el.classList.remove("shadow-xl", "selected-product", "bg-gray-100");
-            });
-
-            card.classList.add("shadow-xl", "selected-product", "bg-gray-100");
-
-            product.buttonElement.focus();
-            product.buttonElement.click();
+    if (parentElement) {
+        const imgElements = parentElement.querySelectorAll('img');
+        imgElements.forEach((img) => {
+            const parentDivOfImg = img.parentNode;
+            parentDivOfImg.style.height = '80%';
+            parentDivOfImg.style.width = '150px';
+            parentDivOfImg.style.zIndex = '10';
+            img.style.transform = 'scale(1.7)';
+            img.style.top = '24px';
         });
+    
+        const btnElements = parentElement.querySelectorAll('button');
+        console.log('btnElements', btnElements)
+    
+        btnElements.forEach((btn) => {
+            let activeColor = '#FFB400';
+            if (btn.className.includes('bg-[--selected-background-color]')) {
+                activeColor = '#1A1F71';
+            }
+    
+            btn.style.cssText = `
+                border-radius: 10px;
+                position: relative;
+                padding-left: 40px;
+                overflow: hidden;
+                box-shadow: none;
+                border: 4px solid #E1E5EC;
+                padding-top: 30px;
+                padding-bottom: 30px;
+            `;
+    
+            const section = btn.querySelector('section');
+            if (section) section.style.gap = '0';
+    
+            if (!btn.querySelector('.active-radio')) {
+                const radioElements = document.createElement('div');
+                radioElements.className = 'active-radio';
+                radioElements.innerHTML = `<span></span>`;
+                btn.appendChild(radioElements);
+            }
+    
+            const titleElements = btn.querySelectorAll('h1');
+            if (titleElements[0]) {
+                titleElements[0].style.cssText = `
+                    font-size: 3rem;
+                    font-weight: bold;
+                    font-family: "STIX Two Text";
+                    line-height: 1.1;
+                    color: #0E0B20;
+                `;
+                titleElements[0].innerText = 'Sermorelin Plan';
+                titleElements[0].parentNode.style.flexWrap = 'wrap-reverse';
+            }
+    
+            if (titleElements[1]) {
+                titleElements[1].style.cssText = `
+                    font-size: 2rem;
+                    margin-top: 7px;
+                    color: #0E0B20;
+                    font-family: "STIX Two Text";
+                `;
+                if(!titleElements[2]){
+                    titleElements[1].style.cssText = `
+                            font-weight: 700;
+                            font-size: 3rem;
+                            margin-top: 7px;
+                            color: #0E0B20;
+                            font-family: "STIX Two Text";
+                        `;
+                }
+            }
+            
+            if(titleElements[2]) {
+                titleElements[2].style.cssText = `
+                    font-size: 3rem;
+                    font-weight: 700;
+                    margin-top: 7px;
+                    color: #0E0B20;
+                    font-family: "STIX Two Text";
+                `;
+            }
+     
+            const pElements = btn.querySelectorAll('p');
+            if(pElements[0]){
+                pElements[0].style.cssText = `
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    color: #0E0B20;
+                    font-family: DM Sans;
+                    margin-bottom: 16px;
+                    line-height: 1.5;
+                `;
+                pElements[0].innerText = 'Peptide that supports natural growth hormone production';
+            }
 
-        planContainer.appendChild(card);
-    });
+
+            // Check if the in-stock div already exists
+            if (!btn.querySelector('.in-stock-container')) {
+                const inStockDiv = document.createElement('div');
+                inStockDiv.classList.add('in-stock-container'); // Add a class to identify it
+                inStockDiv.innerHTML = `
+                    <div class="flex items-center gap-3 mb-4" style="font-family: DM Sans; color: #0E0B20;">
+                        <span class="w-4 h-4 rounded-full bg-green-500 flex-shrink-0 pulsating-dot"></span>
+                        <span class="mr-3 font-bold">In-Stock</span>
+                        <span class="px-4 py-2 rounded-full font-bold" style="background-color: #F8F93F;">
+                            Most Popular Peptide
+                        </span>
+                    </div>
+                `;
+
+                pElements[0].parentNode.appendChild(inStockDiv);
+            }        
+        });
+    
+        btnElements.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                btnElements.forEach((otherBtn) => {
+                    const spanElement = otherBtn.querySelector('.active-radio span');
+                    if (spanElement) {
+                        otherBtn.style.borderColor = '#E1E5EC';
+                        spanElement.parentNode.style.backgroundColor = 'transparent';
+                        spanElement.classList.remove('active');
+                    }
+                });
+    
+                const clickedSpan = btn.querySelector('.active-radio span');
+                if (clickedSpan) {
+                    btn.style.borderColor = '#F8F93F';
+                    clickedSpan.parentNode.style.backgroundColor = '#F8F93F';
+                    clickedSpan.classList.add('active');
+                }
+            });
+        });
+    
+        btnElements[0]?.click();
+
+        const newDiv = document.createElement('div');
+        newDiv.id = 'testimonialContainer';
+        newDiv.innerHTML = testimonialContainer;
+
+        const oldTestContainer = document.getElementById('testimonialContainer');
+        if(!oldTestContainer) {
+            btnElements[0].parentNode.appendChild(newDiv);
+        }
+        
+        
+    } else {
+        console.error('Parent element not found');
+    }
 }
 
 setTimeout(() => {
-    generateProductCards()
+    updateRadioButton();
 }, 500);
