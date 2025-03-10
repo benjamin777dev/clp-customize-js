@@ -780,22 +780,6 @@ style.innerHTML = `
     `;
 document.head.appendChild(style);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const targetPostionElement = document.getElementById('scrollTargetPosition');
 document.getElementById("scrollButton").addEventListener("click", function () {
     targetPostionElement.scrollIntoView({ behavior: "smooth" });
@@ -822,24 +806,12 @@ if(checkoutButton){
 }
 
 const hiddenDefaultElement = () => {
-    // const button = document.querySelector('.flex.w-full.flex-col.gap-4.rounded-2xl.px-5.py-4.bg-\\[--selected-background-color\\].ring-2.ring-\\[--selected-border-color\\]');
-    
-    // if (button) {
-    //     button.parentElement.style.display = "none";
-    // }
-
     document.querySelectorAll("button").forEach(btn => {
         if (btn.innerText.trim() === "Continue") {
-            // btn.parentElement.parentElement.parentElement.style.display = "none";
             btn.parentElement.parentElement.style.display = "none";
         }
     });
 };
-
-
-setTimeout(() => {
-    hiddenDefaultElement();
-}, 1000);
 
 
 function startCountdown() {
@@ -868,7 +840,11 @@ function startCountdown() {
     updateTimer();
 }
 
-startCountdown();
+setTimeout(() => {
+    hiddenDefaultElement();
+    startCountdown();
+}, 1000);
+
 
 
 fetch('https://ipinfo.io/json')
@@ -900,7 +876,7 @@ const updateRadioButton = () => {
         const btnElements = parentElement.querySelectorAll('button');
         console.log('btnElements', btnElements)
     
-        btnElements.forEach((btn) => {
+        btnElements.forEach((btn, index) => {
             let activeColor = '#FFB400';
             if (btn.className.includes('bg-[--selected-background-color]')) {
                 activeColor = '#1A1F71';
@@ -930,13 +906,18 @@ const updateRadioButton = () => {
             const titleElements = btn.querySelectorAll('h1');
             if (titleElements[0]) {
                 titleElements[0].style.cssText = `
-                    font-size: 3rem;
+                    font-size: 2rem;
                     font-weight: bold;
                     font-family: "STIX Two Text";
                     line-height: 1.1;
                     color: #0E0B20;
                 `;
-                titleElements[0].innerText = 'Sermorelin Plan';
+                if(index==0){
+                    titleElements[0].innerText = 'Sermorelin Monthly Plan';
+                } else if(index==1){
+                    titleElements[0].innerText = 'Sermorelin 3-Month Plan';
+                }
+
                 titleElements[0].parentNode.style.flexWrap = 'wrap-reverse';
             }
     
@@ -986,12 +967,18 @@ const updateRadioButton = () => {
             if (!btn.querySelector('.in-stock-container')) {
                 const inStockDiv = document.createElement('div');
                 inStockDiv.classList.add('in-stock-container'); // Add a class to identify it
+                var statebadge = '';
+                if(index==1){
+                    statebadge = 'Best Value';
+                } else if(index == 0) {
+                    statebadge = 'Most Popular Peptide';
+                }
                 inStockDiv.innerHTML = `
                     <div class="flex items-center gap-3 mb-4" style="font-family: DM Sans; color: #0E0B20;">
                         <span class="w-4 h-4 rounded-full bg-green-500 flex-shrink-0 pulsating-dot"></span>
                         <span class="mr-3 font-bold">In-Stock</span>
                         <span class="px-4 py-2 rounded-full font-bold" style="background-color: #F8F93F;">
-                            Most Popular Peptide
+                            ${statebadge}
                         </span>
                     </div>
                 `;
@@ -1039,4 +1026,4 @@ const updateRadioButton = () => {
 
 setTimeout(() => {
     updateRadioButton();
-}, 500);
+}, 1000);
