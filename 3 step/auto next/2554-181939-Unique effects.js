@@ -50,3 +50,46 @@ headlineSpans.forEach((span, index) => {
     span.style.animation = `fadeInScale 1s ease-out forwards`;
     span.style.animationDelay = `${index * 0.3}s`; // Staggered delay for each word
 });
+
+
+
+{
+    let retries = 0;
+    const maxRetries = 30;
+
+    const checkForm = setInterval(() => {
+        const form = document.querySelector("form");
+
+        if (form) {
+            clearInterval(checkForm);
+            console.log("Form found!");
+
+            const buttons = form.querySelectorAll("button");
+            buttons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    const labelId = button.getAttribute('aria-labelledby');
+                    const label = document.getElementById(labelId);
+                    const textSpan = label.querySelector('span');
+                    const buttonText = textSpan ? textSpan.textContent : 'Button clicked';
+                    
+                    console.log(`Button clicked: ${buttonText}`);
+                
+                    if(buttonText == "None of these") {
+                        setTimeout(() => {
+                            const submitButton = form.querySelector('button[type="submit"]');
+                            if (submitButton && submitButton !== event.target) {
+                                submitButton.click();
+                            }
+                        }, 300);
+                    }
+                });
+
+            });
+        } else if (retries >= maxRetries) {
+            clearInterval(checkForm);
+            console.warn("Form not found after 3 seconds.");
+        }
+
+        retries++;
+    }, 100);
+}
