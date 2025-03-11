@@ -53,24 +53,35 @@ headlineSpans.forEach((span, index) => {
 
 
 
-const maleButton = document.getElementById("headlessui-switch-:r1s:");
-const femaleButton = document.getElementById("headlessui-switch-:r1u:");
-const nextButton = document.querySelector('button[type="submit"]');
+{
+    let retries = 0;
+    const maxRetries = 30; // 30 retries (every 100ms for 3 seconds)
 
-maleButton.addEventListener("click", () => {
-    console.log("Male selected");
-    autoNext();
-});
+    const checkForm = setInterval(() => {
+        const form = document.querySelector("form"); // Try to get the form
 
-femaleButton.addEventListener("click", () => {
-    console.log("Female selected");
-    autoNext();
-});
+        if (form) {
+            clearInterval(checkForm); // Stop checking when the form is found
+            console.log("Form found!");
 
-const autoNext = () => {   
-    setTimeout(() => {
-        const nextButton = document.querySelector('button[type="submit"]');
-        nextButton.click();
-        console.log('auto Next')
-    }, 300);
+            const buttons = form.querySelectorAll("button"); // Get all buttons inside form
+            buttons.forEach(button => {
+                button.addEventListener("click", (event) => {
+                    console.log(`Button clicked: ${button.innerText}`);
+
+                    setTimeout(() => {
+                        const submitButton = form.querySelector('button[type="submit"]');
+                        if (submitButton && submitButton !== event.target) {
+                            submitButton.click();
+                        }
+                    }, 300);
+                });
+            });
+        } else if (retries >= maxRetries) {
+            clearInterval(checkForm);
+            console.warn("Form not found after 3 seconds.");
+        }
+
+        retries++;
+    }, 100); // Check every 100ms
 }
