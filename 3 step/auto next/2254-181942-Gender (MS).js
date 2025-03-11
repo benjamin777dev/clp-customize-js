@@ -50,3 +50,27 @@ headlineSpans.forEach((span, index) => {
     span.style.animation = `fadeInScale 1s ease-out forwards`;
     span.style.animationDelay = `${index * 0.3}s`; // Staggered delay for each word
 });
+
+
+
+const maleButton = document.getElementById("headlessui-switch-:r1s:");
+const femaleButton = document.getElementById("headlessui-switch-:r1u:");
+const nextButton = document.querySelector('button[type="submit"]');
+
+maleButton.addEventListener("click", () => {
+    console.log("Male selected");
+    autoNext();
+});
+
+femaleButton.addEventListener("click", () => {
+    console.log("Female selected");
+    autoNext();
+});
+
+const autoNext = () => {   
+    setTimeout(() => {
+        const nextButton = document.querySelector('button[type="submit"]');
+        nextButton.click();
+        console.log('auto Next')
+    }, 300);
+}
