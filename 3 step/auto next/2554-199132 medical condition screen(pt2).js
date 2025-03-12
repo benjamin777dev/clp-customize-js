@@ -35,3 +35,41 @@ document.head.appendChild(style);
 // Animate the headline
 const line1 = document.getElementById('line1');
 line1.style.animation = 'fadeInLine 1s ease-out forwards';
+
+
+{
+    let retries = 0;
+    const maxRetries = 50;
+
+    const checkForm = setInterval(() => {
+        const form = document.querySelector("form");
+
+        if (form) {
+            clearInterval(checkForm);
+            console.log("Form found!");
+
+            const buttons = form.querySelectorAll("button");
+            buttons.forEach(button => { 
+                button.addEventListener('click', function(event) {
+                    const value = button.querySelector("span.line-clamp-2").textContent.trim();
+                    console.log(`Button clicked: ${value}`);
+                
+                    if(value == "None of the above") {
+                        setTimeout(() => {
+                            const submitButton = form.querySelector('button[type="submit"]');
+                            if (submitButton && submitButton !== event.target) {
+                                submitButton.click();
+                            }
+                        }, 300);
+                    }
+                });
+
+            });
+        } else if (retries >= maxRetries) {
+            clearInterval(checkForm);
+            console.warn("Form not found after 5 seconds.");
+        }
+
+        retries++;
+    }, 100);
+}
