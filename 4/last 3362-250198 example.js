@@ -2,7 +2,7 @@ const container = document.getElementById('script-container');
 if (!container) return;
 
 container.innerHTML = `
-    <div style="padding: 2rem; max-width: 800px; margin: 0 auto; font-family: 'Arial', sans-serif; color: #2C3E50; line-height: 1.8; text-align: center;">
+    <div style="padding: 1rem; max-width: 800px; margin: 0 auto; font-family: 'Arial', sans-serif; color: #2C3E50; line-height: 1.8; text-align: center;">
         <style>
             .pulsating-dot {
                 display: block;
@@ -209,12 +209,6 @@ const updateCheckoutBtn = ()=>{
     `
 
 }
-
-
-
-
-
-
 
 const targetNextslide = document.createElement('div');
 targetNextslide.id = 'slideContainer'
@@ -536,97 +530,12 @@ targetNextslide.innerHTML = `
             <a href="tel:+13107441417">+1 (310) 744-1417</a>
         </div>
     </div>
-
-
 `
-
-
-
-// setTimeout(() => {
-//     const targetElement = document.querySelector('.mt-5.flex.flex-col.items-center.gap-5');
-    
-//     if (targetElement) {
-//       // 2. Create the new element
-//     //   const newElement = document.createElement("p");
-//     //   newElement.textContent = "This is a new dynamically inserted paragraph.";
-      
-//     //   // 3. Apply styles and classes
-//     //   newElement.style.color = "rgb(26, 31, 113)";
-//     //   newElement.className = "!no-underline text-brand-body-text flex items-center justify-center gap-1 text-center font-brand-body text-xs font-normal";
-    
-//       // 4. Append the new element at the end of the target div
-//     //   targetElement.appendChild(newElement);
-    
-//       console.log("New element added successfully!");
-    
-    
-//         const existingSlider = targetElement.parentNode.querySelector('#slideContainer');
-//         if (!existingSlider) {
-//             if (typeof targetNextslide !== 'undefined') {
-//                 targetElement.after(targetNextslide);
-//             } else {
-//                 console.error('targetNextslide is not defined.');
-//             }
-//         } else {
-//             console.warn('Slider already exists within the target element.');
-//         }
-    
-                    
-//         setTimeout(() => {
-//             const testimonials = document.querySelectorAll('.testimonial');
-//             const prevBtn = document.querySelector('.prev-btn');
-//             const nextBtn = document.querySelector('.next-btn');
-            
-//             let currentIndex = 0;
-            
-//             function showTestimonial(index) {
-//               testimonials.forEach((testimonial, i) => {
-//                 testimonial.classList.remove('active');
-//                 if (i === index) {
-//                     const computedHeight = window.getComputedStyle(testimonial).height;
-//                     testimonial.classList.add('active');
-//                     const testimonialSliderElement = document.getElementById('testimonialSlider');
-//                     if (testimonialSliderElement) {
-//                         testimonialSliderElement.style.height = computedHeight;
-//                     } else {
-//                         console.error('testimonialSliderElement is not defined');
-//                     }
-//                 }
-//               });
-//             }
-            
-//             function nextTestimonial() {
-//               currentIndex = (currentIndex + 1) % testimonials.length;
-//               showTestimonial(currentIndex);
-//             }
-            
-//             function prevTestimonial() {
-//               currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-//               showTestimonial(currentIndex);
-//             }
-            
-//             nextBtn.addEventListener('click', nextTestimonial);
-//             prevBtn.addEventListener('click', prevTestimonial);
-            
-//             setTimeout(() => {
-//                 showTestimonial(currentIndex);
-//             }, 50);
-//         }, 5000);
-    
-        
-    
-//     } else {
-//       console.error("Target element not found!");
-//     }
-    
-// }, 3000);
-
-
 
 
 {
     let retries = 0;
-    const maxRetries = 50;
+    const maxRetries = 500;
 
     const checkForm = setInterval(() => {
         // const form = document.querySelector("form");
@@ -636,27 +545,6 @@ targetNextslide.innerHTML = `
             clearInterval(checkForm);
             updateCheckoutBtn();
             console.log("Form found!");
-
-
-
-            // const buttons = form.querySelectorAll("button");
-            // buttons.forEach(button => { 
-            //     button.addEventListener('click', function(event) {
-            //         const value = button.querySelector("span.line-clamp-2").textContent.trim();
-            //         console.log(`Button clicked: ${value}`);
-                
-            //         if(value == "None of the above") {
-            //             setTimeout(() => {
-            //                 const submitButton = form.querySelector('button[type="submit"]');
-            //                 if (submitButton && submitButton !== event.target) {
-            //                     submitButton.click();
-            //                 }
-            //             }, 300);
-            //         }
-            //     });
-
-            // });
-
 
             const existingSlider = targetElement.parentNode.querySelector('#slideContainer');
             if (!existingSlider) {
@@ -706,12 +594,6 @@ targetNextslide.innerHTML = `
             setTimeout(() => {
                 showTestimonial(currentIndex);
             }, 50);
-
-
-
-
-
-
 
         } else if (retries >= maxRetries) {
             clearInterval(checkForm);
